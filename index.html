@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hades Academy - Dark Education</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #050505; --bg-card: #111111; --fg: #e8e8e8; --muted: #7a7a7a;
+      --accent: #8B0000; --accent-bright: #DC143C; --gold: #b8860b; --gold-light: #daa520;
+      --border: #2a2a2a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Cormorant Garamond', serif; background: var(--bg-deep); color: var(--fg); overflow-x: hidden; }
+    h1, h2, h3, h4, .font-display { font-family: 'Cinzel', serif; }
+    
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* PAGES & MODALS */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; animation: fadeIn 0.5s ease forwards; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: var(--bg-card); border: 1px solid var(--accent); width: 100%; max-width: 500px; max-height: 80vh; overflow-y: auto; padding: 30px; position: relative; animation: slideUp 0.3s ease; }
+    
+    /* BUTTONS */
+    .btn-blood {
+      background: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent) 100%);
+      color: white; padding: 12px 24px; font-family: 'Cinzel', serif; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer;
+      display: inline-block; text-decoration: none; transition: all 0.2s; text-align: center; font-size: 0.85rem;
+    }
+    .btn-blood:active { transform: scale(0.96); }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--gold); color: var(--gold);
+      padding: 10px 20px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+      cursor: pointer; transition: all 0.2s; display: inline-block; text-decoration: none; font-size: 0.8rem;
+    }
+    .btn-ghost { background: none; border: none; color: var(--muted); cursor: pointer; font-family: 'Cinzel'; font-size: 0.8rem; padding: 5px; }
+    .btn-ghost.active { color: var(--gold); }
+
+    /* COMPONENTS */
+    .nav-fixed { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .form-input { background: rgba(0,0,0,0.6); border: 1px solid var(--border); color: white; padding: 14px; width: 100%; font-size: 1rem; outline: none; margin-bottom: 15px; }
+    .form-input:focus { border-color: var(--accent); }
+    
+    /* CARDS */
+    .edu-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; cursor: pointer; transition: 0.2s; position: relative; overflow: hidden; }
+    .edu-card:active { border-color: var(--accent); }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--accent); transition: height 0.3s; }
+    .edu-card:hover::before { height: 100%; }
+
+    /* RITUAL PROGRESS */
+    .progress-container { height: 6px; background: var(--border); margin-top: 20px; border-radius: 3px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.5s ease; }
+    
+    /* ANIMATIONS */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav-fixed">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+      <a href="#" onclick="navigateTo('home')" class="font-display" style="font-size: 1.1rem; color: white; text-decoration: none;"><span style="color: var(--accent-bright);">HADES</span> ACADEMY</a>
+      <div style="display: flex; gap: 10px;">
+        <button id="nav-profile-btn" onclick="navigateTo('profile')" style="display: none;" class="btn-outline" style="padding: 8px 15px;">PROFILE</button>
+        <button id="nav-auth-btn" onclick="navigateTo('auth')" class="btn-outline" style="padding: 8px 15px;">ENTER</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== MODAL CONTAINER ===================== -->
+  <div id="main-modal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--muted); font-size: 1.5rem;">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: HOME (BERANDA) ===================== -->
+  <div id="page-home" class="page active">
+    
+    <!-- HERO -->
+    <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative;">
+      <div style="position: absolute; top: 30%; left: 50%; transform: translateX(-50%); width: 500px; height: 500px; background: var(--accent); filter: blur(180px); opacity: 0.1; pointer-events: none;"></div>
+      
+      <div style="position: relative; z-index: 10; max-width: 700px;">
+        <div class="float-anim" style="margin-bottom: 25px;">
+          <!-- Greek Helmet SVG -->
+          <svg style="width: 70px; height: 70px; color: var(--accent-bright); filter: drop-shadow(0 0 15px var(--accent));" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+             <path d="M12 4C8 4 5 7 5 11C5 15 6 18 9 20H15C18 18 19 15 19 11C19 7 16 4 12 4Z"/>
+             <path d="M5 11H19"/>
+             <path d="M8 11V8"/>
+             <path d="M12 11V7"/>
+             <path d="M16 11V8"/>
+          </svg>
+        </div>
+        <p class="font-display" style="color: var(--gold); letter-spacing: 0.4em; font-size: 0.8rem; margin-bottom: 15px;">UNDERWORLD WISDOM</p>
+        <h1 class="font-display" style="font-size: 3rem; line-height: 1; margin-bottom: 20px; font-weight: 900; color: white;">
+          MASTER THE <br><span style="color: var(--accent-bright);">DARKNESS</span>
+        </h1>
+        <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">
+          Jalan transformasi diri berdasarkan filsafat kuno. Kekuatan lahir dari disiplin dan pemahaman diri yang mendalam.
+        </p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <button onclick="navigateTo('archives')" class="btn-blood">EXPLORE ARCHIVES</button>
+          <button onclick="navigateTo('auth')" class="btn-outline">JOIN NOW</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORACLE QUOTE -->
+    <section id="wisdom" style="padding: 60px 20px; text-align: center; background: #080808;">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <p class="font-display" style="color: var(--accent-bright); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">THE ORACLE</p>
+        <h2 class="font-display" style="font-size: 1.8rem; color: white; margin-bottom: 35px;">Daily Wisdom</h2>
+        
+        <div style="border: 1px solid var(--border); padding: 30px 20px;">
+          <blockquote id="quote-text" style="font-size: 1.4rem; font-style: italic; color: white; margin-bottom: 15px; transition: opacity 0.3s;">
+            "Kekuatan sejati lahir dari kegelapan yang kamu peluk."
+          </blockquote>
+          <p id="quote-author" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 20px;">— Unknown Master</p>
+          
+          <div style="display: flex; justify-content: center; gap: 15px;">
+            <button onclick="generateQuote()" class="btn-outline" style="font-size: 0.75rem;">SUMMON NEW</button>
+            <button onclick="saveQuote()" id="save-quote-btn" class="btn-ghost">
+              <svg style="width:20px; height:20px; vertical-align: middle;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RITUAL TRACKER -->
+    <section id="ritual" style="padding: 60px 20px;">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <p class="font-display" style="color: var(--accent-bright); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">PRACTICE</p>
+          <h2 class="font-display" style="font-size: 1.8rem; color: white;">Ritual of Discipline</h2>
+        </div>
+
+        <div id="ritual-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+
+        <div style="margin-top: 20px; padding: 20px; border: 1px solid var(--border); text-align: center; background: var(--bg-card);">
+          <p style="color: var(--muted); font-size: 0.8rem;">POWER PROGRESS</p>
+          <div class="progress-container"><div id="progress-bar" class="progress-bar"></div></div>
+          <p id="power-score" style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); margin: 10px 0;">0 / 100</p>
+          <button onclick="resetRituals()" style="background: none; border: 1px solid var(--border); color: var(--muted); padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px;">RESET</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- QUICK LINK TO ARCHIVES -->
+    <section style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border);">
+        <p style="color: var(--muted); margin-bottom: 15px;">Ready to learn?</p>
+        <button onclick="navigateTo('archives')" class="btn-blood">ENTER THE ARCHIVES</button>
+    </section>
+
+  </div>
+
+  <!-- ===================== PAGE: ARCHIVES (EDUKASI) ===================== -->
+  <div id="page-archives" class="page" style="padding-top: 80px;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+      <div style="margin-bottom: 30px;">
+        <button onclick="navigateTo('home')" class="btn-ghost" style="margin-bottom: 20px;">&larr; Back to Home</button>
+        <h2 class="font-display" style="font-size: 2rem; color: white;">The Archives</h2>
+        <p style="color: var(--muted);">Pelajari filsafat yang membentuk para penakluk sejati.</p>
+      </div>
+
+      <div style="display: grid; gap: 15px;">
+        
+        <!-- Card 1 -->
+        <div class="edu-card" onclick="openModal('stoic')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Stoicism: The Iron Will</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Kuasai emosi, kuasai dunia.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="edu-card" onclick="openModal('nietzsche')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Nietzschean Will to Power</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Jadilah tuan atas takdirmu sendiri.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="edu-card" onclick="openModal('spartan')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Agoge: The Spartan Way</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Kesakitan adalah guru terbaik.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="edu-card" onclick="openModal('shadow')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Jungian Shadow Work</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Hadapi monster di dalam dirimu.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="edu-card" onclick="openModal('machiavelli')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Machiavellian Tactics</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Seni perang dalam dunia modern.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="edu-card" onclick="openModal('minimalism')">
+          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Dark Minimalism</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Kurangi kebisingan, tingkatkan kekuatan.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: AUTH (LOGIN/DAFTAR) ===================== -->
+  <div id="page-auth" class="page">
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 20px;">
+      <div style="width: 100%; max-width: 400px;">
+        
+        <div style="background: rgba(10, 10, 10, 0.95); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 30px 25px;">
+          
+          <div style="text-align: center; margin-bottom: 25px;">
+            <h1 class="font-display" style="font-size: 1.6rem; color: white; letter-spacing: 2px;">THE GATES</h1>
+            <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Authentication Portal</p>
+          </div>
+
+          <!-- Tabs -->
+          <div style="display: flex; margin-bottom: 20px; border-bottom: 1px solid var(--border);">
+            <button id="tab-login" onclick="switchAuthTab('login')" class="auth-tab active font-display">MASUK</button>
+            <button id="tab-reg" onclick="switchAuthTab('register')" class="auth-tab font-display">DAFTAR</button>
+          </div>
+
+          <!-- Form Login -->
+          <form id="form-login" onsubmit="handleLogin(event)">
+            <input type="email" id="login-email" class="form-input" placeholder="Email" required>
+            <input type="password" id="login-pass" class="form-input" placeholder="Password" required>
+            <button type="submit" class="btn-blood" style="width: 100%;">MASUK</button>
+          </form>
+
+          <!-- Form Register -->
+          <form id="form-register" style="display: none;" onsubmit="handleRegister(event)">
+            <input type="text" id="reg-name" class="form-input" placeholder="Nama Samaran" required>
+            <input type="email" id="reg-email" class="form-input" placeholder="Email" required>
+            <input type="password" id="reg-pass" class="form-input" placeholder="Password" required>
+            
+            <label class="font-display" style="font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 10px;">PILIH JALANMU:</label>
+            <select id="reg-path" class="form-input" style="cursor: pointer;">
+              <option value="Stoic Iron">Stoic Iron (Ketahanan Mental)</option>
+              <option value="Spartan Way">Spartan Way (Disiplin Fisik)</option>
+              <option value="Shadow Walker">Shadow Walker (Pemahaman Diri)</option>
+            </select>
+            
+            <button type="submit" class="btn-blood" style="width: 100%;">DAFTAR</button>
+          </form>
+
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button onclick="navigateTo('home')" class="btn-ghost" style="color: var(--gold);">Kembali ke Beranda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: PROFILE ===================== -->
+  <div id="page-profile" class="page" style="padding-top: 80px;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; text-align: center;">
+        
+        <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 30px; margin-top: 30px;">
+            <svg style="width: 60px; height: 60px; color: var(--accent); margin-bottom: 15px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <h2 class="font-display" id="profile-name" style="font-size: 1.5rem; color: white;">Guest</h2>
+            <p id="profile-email" style="color: var(--muted); margin-bottom: 20px;">email@example.com</p>
+            
+            <div style="border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px;">
+                <p style="font-size: 0.8rem; color: var(--gold); letter-spacing: 1px;">YOUR PATH</p>
+                <h3 class="font-display" id="profile-path" style="font-size: 1.2rem; color: white;">Not Selected</h3>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <p style="font-size: 0.8rem; color: var(--muted);">TOTAL POWER ACCUMULATED</p>
+                <h2 id="total-power-profile" style="font-size: 2rem; color: var(--accent-bright);">0</h2>
+            </div>
+
+            <button onclick="handleLogout()" class="btn-outline" style="margin-top: 30px; border-color: var(--accent); color: var(--accent);">LOGOUT</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // --- DATA ARCHIVES ---
+    const archives = {
+      stoic: {
+        title: "STOICISM: THE IRON WILL",
+        content: "Stoicism adalah filsafat kuno yang mengajarkan pengembangan kendali diri dan kekuatan mental untuk mengatasi emosi destruktif. Didirikan oleh Zeno dari Citium. <br><br><strong>Kunci:</strong> Fokus pada apa yang bisa kamu kontrol, terima apa yang tidak bisa. 'Kamu memiliki kekuatan atas pikiranmu - bukan di luar kejadian.'"
+      },
+      nietzsche: {
+        title: "WILL TO POWER",
+        content: "Konsep Friedrich Nietzsche yang menggambarkan dorongan utama manusia bukan untuk bertahan hidup, melainkan untuk mengekspresikan kekuatan dan mengatasi diri sendiri. <br><br><strong>Kunci:</strong> Ciptakan nilai-nilaimu sendiri. Jadilah 'Ubermensch' (Manusia Super) yang tidak tunduk pada moralitas massa."
+      },
+      spartan: {
+        title: "THE AGOGE",
+        content: "Sistem pendidikan militer Sparta yang melatih warga negara menjadi prajurit tangguh sejak usia 7 tahun. Fokus pada kesulitan fisik, kekurangan, dan loyalitas kelompok. <br><br><strong>Kunci:</strong> Ketergantungan pada diri sendiri, toleransi rasa sakit yang tinggi, dan disiplin tanpa kompromi."
+      },
+      shadow: {
+        title: "SHADOW WORK",
+        content: "Diperkenalkan oleh Carl Jung, 'Bayangan' adalah sisi tidak sadar dari kepribadian yang ego sadar tidak mengakuinya. <br><br><strong>Kunci:</strong> Hadapi sisi gelapmu—keserakahan, iri, kemarahan—dan integrasikan. Bayangan yang diabaikan akan memanifestasikan dirinya sebagai nasib buruk."
+      },
+      machiavelli: {
+        title: "MACHIAVELLIAN TACTICS",
+        content: "Berasal dari Niccolò Machiavelli, penulis 'The Prince'. Fokus pada realisme politik dan bagaimana mempertahankan kekuasaan. <br><br><strong>Kunci:</strong> 'Tujuan menghalalkan cara.' Lebih baik ditakuti daripada dicintai jika tidak bisa mendapatkan keduanya."
+      },
+      minimalism: {
+        title: "DARK MINIMALISM",
+        content: "Penghapusan segala sesuatu yang tidak esensial untuk fokus pada kekuatan. Bukan sekadar estetika bersih, tapi strategi perang mental. <br><br><strong>Kunci:</strong> Kurangi kebisingan visual dan mental. Setiap benda yang kamu miliki harus memiliki fungsi atau makna kekuatan."
+      }
+    };
+
+    const quotes = [
+      { text: "Kekuatan sejati lahir dari kegelapan yang kamu peluk.", author: "Unknown Master" },
+      { text: "Jangan berdoa untuk kehidupan yang lebih mudah. Berdoalah untuk menjadi lebih kuat.", author: "Marcus Aurelius" },
+      { text: "Barangsiapa memiliki mengapa untuk hidup, dapat menanggung hampir semua bagaimana.", author: "Friedrich Nietzsche" },
+      { text: "Kamu memiliki kekuatan atas pikiranmu, bukan di luar kejadian.", author: "Marcus Aurelius" },
+      { text: "Rasa sakit tidak bisa dihindari, tapi penderitaan adalah pilihan.", author: "Haruki Murakami" }
+    ];
+    const rituals = [
+      { id: 'cold', name: 'Cold Shower', desc: '5 menit air dingin', power: 20 },
+      { id: 'silence', name: 'Meditation', desc: '15 menit keheningan', power: 20 },
+      { id: 'fast', name: 'Fasting', desc: 'Lewatkan 1 waktu makan', power: 20 },
+      { id: 'workout', name: 'Calisthenics', desc: '100 pushups/squats', power: 20 },
+      { id: 'read', name: 'Study', desc: 'Baca 1 bab buku berat', power: 20 }
+    ];
+
+    // --- STATE ---
+    let state = {
+      isLoggedIn: false,
+      user: null,
+      power: 0,
+      rituals: [],
+      savedQuotes: []
+    };
+
+    // --- INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      updateUI();
+      renderRituals();
+    });
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('hades_state');
+        if (saved) state = JSON.parse(saved);
+      } catch(e) {}
+    }
+
+    function saveState() {
+      try { localStorage.setItem('hades_state', JSON.stringify(state)); } catch(e) {}
+    }
+
+    function updateUI() {
+      const authBtn = document.getElementById('nav-auth-btn');
+      const profileBtn = document.getElementById('nav-profile-btn');
+
+      if (state.isLoggedIn) {
+        if(authBtn) authBtn.style.display = 'none';
+        if(profileBtn) profileBtn.style.display = 'block';
+        
+        // Update Profile Page
+        if(document.getElementById('profile-name')) document.getElementById('profile-name').innerText = state.user.name;
+        if(document.getElementById('profile-email')) document.getElementById('profile-email').innerText = state.user.email;
+        if(document.getElementById('profile-path')) document.getElementById('profile-path').innerText = state.user.path;
+        if(document.getElementById('total-power-profile')) document.getElementById('total-power-profile').innerText = state.power;
+      } else {
+        if(authBtn) authBtn.style.display = 'block';
+        if(profileBtn) profileBtn.style.display = 'none';
+      }
+      updatePowerDisplay();
+    }
+
+    // --- NAVIGATION ---
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    // --- AUTH LOGIC ---
+    function switchAuthTab(tab) {
+      const btnLogin = document.getElementById('tab-login');
+      const btnReg = document.getElementById('tab-reg');
+      const formLogin = document.getElementById('form-login');
+      const formReg = document.getElementById('form-register');
+
+      if (tab === 'login') {
+        btnLogin.classList.add('active'); btnLogin.style.borderBottom = '2px solid var(--accent)';
+        btnReg.classList.remove('active'); btnReg.style.borderBottom = 'none';
+        formLogin.style.display = 'block'; formReg.style.display = 'none';
+      } else {
+        btnReg.classList.add('active'); btnReg.style.borderBottom = '2px solid var(--accent)';
+        btnLogin.classList.remove('active'); btnLogin.style.borderBottom = 'none';
+        formLogin.style.display = 'none'; formReg.style.display = 'block';
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      // Simulate login check (in real app, check DB)
+      // Here we just log in as whoever registered last or guest
+      if(!state.user) state.user = { name: "Guest", email: email, path: "Unknown" };
+      
+      state.isLoggedIn = true;
+      saveState();
+      updateUI();
+      alert("Selamat datang kembali.");
+      navigateTo('home');
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const path = document.getElementById('reg-path').value;
+
+      state.user = { name, email, path };
+      state.isLoggedIn = true;
+      state.power = 0; // reset power for new user
+      state.rituals = [];
+      saveState();
+      updateUI();
+      alert("Selamat datang di Akademi. Jalanmu dimulai sekarang.");
+      navigateTo('home');
+    }
+
+    function handleLogout() {
+      state.isLoggedIn = false;
+      saveState();
+      updateUI();
+      navigateTo('home');
+    }
+
+    // --- MODAL LOGIC ---
+    function openModal(id) {
+      const data = archives[id];
+      if(!data) return;
+      
+      document.getElementById('modal-body').innerHTML = `
+        <h3 class="font-display" style="font-size: 1.3rem; color: var(--gold); margin-bottom: 15px;">${data.title}</h3>
+        <div style="color: var(--fg); line-height: 1.6;">${data.content}</div>
+      `;
+      document.getElementById('main-modal').classList.add('active');
+    }
+
+    function closeModal(e) {
+      if(!e || e.target === e.currentTarget) {
+        document.getElementById('main-modal').classList.remove('active');
+      }
+    }
+
+    // --- HOME LOGIC ---
+    function generateQuote() {
+      const textEl = document.getElementById('quote-text');
+      const authorEl = document.getElementById('quote-author');
+      const randomQ = quotes[Math.floor(Math.random() * quotes.length)];
+      
+      textEl.style.opacity = 0;
+      setTimeout(() => {
+        textEl.textContent = `"${randomQ.text}"`;
+        authorEl.textContent = `— ${randomQ.author}`;
+        textEl.style.opacity = 1;
+      }, 300);
+    }
+
+    function saveQuote() {
+      alert("Quote disimpan ke jurnal batinimu (Fitur simulasi).");
+    }
+
+    // --- RITUAL LOGIC ---
+    function renderRituals() {
+      const list = document.getElementById('ritual-list');
+      if(!list) return;
+      list.innerHTML = '';
+      
+      rituals.forEach(r => {
+        const isDone = state.rituals.includes(r.id);
+        const div = document.createElement('div');
+        div.style.cssText = 'background: var(--bg-card); border: 1px solid var(--border); padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;';
+        if(isDone) div.style.borderColor = 'var(--gold)';
+        
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid ${isDone ? 'var(--gold)' : 'var(--muted)'}; background: ${isDone ? 'var(--gold)' : 'transparent'}; display: flex; align-items: center; justify-content: center;">
+              ${isDone ? '<svg style="width:14px; color:#000;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>' : ''}
+            </div>
+            <div>
+              <h4 style="color: white; font-size: 1rem;">${r.name}</h4>
+              <p style="color: var(--muted); font-size: 0.8rem;">${r.desc}</p>
+            </div>
+          </div>
+          <span style="color: var(--gold); font-size: 0.8rem;">+${r.power}</span>
+        `;
+        
+        div.onclick = () => toggleRitual(r.id, r.power);
+        list.appendChild(div);
+      });
+      updatePowerDisplay();
+    }
+
+    function toggleRitual(id, power) {
+      if (state.rituals.includes(id)) {
+        state.rituals = state.rituals.filter(i => i !== id);
+        state.power -= power;
+      } else {
+        state.rituals.push(id);
+        state.power += power;
+      }
+      saveState();
+      renderRituals();
+      updateUI(); // to update profile page if open
+    }
+
+    function resetRituals() {
+      state.rituals = [];
+      state.power = 0;
+      saveState();
+      renderRituals();
+      updateUI();
+    }
+
+    function updatePowerDisplay() {
+      const scoreEl = document.getElementById('power-score');
+      const barEl = document.getElementById('progress-bar');
+      const profileScoreEl = document.getElementById('total-power-profile');
+      
+      if(scoreEl) scoreEl.innerText = state.power + ' / 100';
+      if(barEl) barEl.style.width = state.power + '%';
+      if(profileScoreEl) profileScoreEl.innerText = state.power;
+    }
+
+    // Tab styling helper
+    document.head.insertAdjacentHTML('beforeend', `<style>.auth-tab{flex:1; background:none; border:none; color:var(--muted); padding:12px; cursor:pointer; border-bottom:2px solid transparent;}.auth-tab.active{color:var(--gold); border-bottom-color:var(--accent);}</style>`);
+  </script>
+</body>
+</html>
