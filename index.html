@@ -3,61 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hades Academy - Dark Education</title>
+  <title>Athena Academy - Mystical Knowledge</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900\&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400\&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #050505; --bg-card: #111111; --fg: #e8e8e8; --muted: #7a7a7a;
-      --accent: #8B0000; --accent-bright: #DC143C; --gold: #b8860b; --gold-light: #daa520;
-      --border: #2a2a2a;
+      --bg-main: transparent;
+      --fg-text: #1A1A1A;
+      --muted: #37474F;
+      --primary: #0D47A1; /* Biru Royal */
+      --primary-light: #1976D2;
+      --gold: #C5A059; /* Emas */
+      --border: rgba(255, 255, 255, 0.3);
+      --success: #2E7D32;
+      --danger: #C62828;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body { font-family: 'Cormorant Garamond', serif; background: var(--bg-deep); color: var(--fg); overflow-x: hidden; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--fg-text);
+      overflow-x: hidden;
+      background-color: #000; /* Fallback */
+    }
     h1, h2, h3, h4, .font-display { font-family: 'Cinzel', serif; }
-    
+
+    /* ===================== ILLUSION BACKGROUND ===================== */
+    .bg-illusion {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      /* Gambar Reruntuhan Yunani yang Anda berikan */
+      background-image: url('https://z-cdn-media.chatglm.cn/files/0804121f-976b-4140-ad5e-8cf491ec2016.png?auth_key=1879205849-115f6055212b410abe9a48f54927d37a-0-096f7105c8f7bc2aed2b307fe0865044');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      /* Efek Blur dan Gelap untuk Ilusi */
+      filter: blur(4px) brightness(0.7) grayscale(0.2);
+      transform: scale(1.05); /* Sedikit zoom agar pinggiran blur tidak terlihat */
+    }
+
+    /* Overlay tambahan untuk membuat teks lebih jelas */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.4));
+      pointer-events: none;
+    }
+
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
     /* PAGES & MODALS */
-    .page { display: none; min-height: 100vh; }
-    .page.active { display: block; animation: fadeIn 0.5s ease forwards; }
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .page { display: none; min-height: 100vh; padding-bottom: 60px; }
+    .page.active { display: block; animation: fadeIn 0.6s ease forwards; }
+ 
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal-overlay.active { display: flex; }
-    .modal-content { background: var(--bg-card); border: 1px solid var(--accent); width: 100%; max-width: 500px; max-height: 80vh; overflow-y: auto; padding: 30px; position: relative; animation: slideUp 0.3s ease; }
-    
+ 
+    .modal-content {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--gold);
+      width: 100%; max-width: 500px; max-height: 80vh; overflow-y: auto;
+      padding: 30px; position: relative; animation: slideUp 0.3s ease;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      border-radius: 4px;
+    }
+
     /* BUTTONS */
-    .btn-blood {
-      background: linear-gradient(180deg, var(--accent-bright) 0%, var(--accent) 100%);
+    .btn-main {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
       color: white; padding: 12px 24px; font-family: 'Cinzel', serif; font-weight: 600;
       letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer;
       display: inline-block; text-decoration: none; transition: all 0.2s; text-align: center; font-size: 0.85rem;
+      box-shadow: 0 4px 10px rgba(13, 71, 161, 0.4);
     }
-    .btn-blood:active { transform: scale(0.96); }
+    .btn-main:active { transform: scale(0.96); }
+ 
     .btn-outline {
-      background: transparent; border: 1px solid var(--gold); color: var(--gold);
-      padding: 10px 20px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.8); border: 2px solid var(--gold); color: var(--primary);
+      padding: 10px 20px; font-family: 'Cinzel', serif; letter-spacing: 1px; font-weight: 600;
       cursor: pointer; transition: all 0.2s; display: inline-block; text-decoration: none; font-size: 0.8rem;
+      backdrop-filter: blur(4px);
     }
-    .btn-ghost { background: none; border: none; color: var(--muted); cursor: pointer; font-family: 'Cinzel'; font-size: 0.8rem; padding: 5px; }
-    .btn-ghost.active { color: var(--gold); }
+    .btn-outline:active { background: var(--gold); color: white; }
+
+    .btn-back {
+      background: rgba(255,255,255,0.6); border: none; color: var(--primary); cursor: pointer;
+      font-family: 'Cinzel'; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 20px;
+      padding: 5px 10px; border-radius: 4px;
+    }
 
     /* COMPONENTS */
-    .nav-fixed { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .form-input { background: rgba(0,0,0,0.6); border: 1px solid var(--border); color: white; padding: 14px; width: 100%; font-size: 1rem; outline: none; margin-bottom: 15px; }
-    .form-input:focus { border-color: var(--accent); }
-    
-    /* CARDS */
-    .edu-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; cursor: pointer; transition: 0.2s; position: relative; overflow: hidden; }
-    .edu-card:active { border-color: var(--accent); }
-    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--accent); transition: height 0.3s; }
-    .edu-card:hover::before { height: 100%; }
+    .nav-fixed { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border-bottom: 2px solid var(--gold); box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+ 
+    /* Glassmorphism Cards */
+    .content-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .form-input { background: rgba(255,255,255,0.9); border: 1px solid var(--border); color: var(--fg-text); padding: 14px; width: 100%; font-size: 1rem; outline: none; margin-bottom: 15px; border-radius: 4px; }
+    .form-input:focus { border-color: var(--primary); background: white; }
 
     /* RITUAL PROGRESS */
-    .progress-container { height: 6px; background: var(--border); margin-top: 20px; border-radius: 3px; overflow: hidden; }
-    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); width: 0%; transition: width 0.5s ease; }
-    
+    .progress-container { height: 10px; background: rgba(0,0,0,0.1); margin-top: 20px; border-radius: 5px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--gold)); width: 0%; transition: width 0.5s ease; border-radius: 5px; }
+ 
+    /* SOCIAL BUTTONS */
+    .social-btn-container { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+    .social-btn {
+      width: 50px; height: 50px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; border: 2px solid var(--border);
+      transition: all 0.3s; color: var(--primary); text-decoration: none; background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+    }
+    .social-btn:active { transform: scale(0.9); border-color: var(--primary); color: white; }
+    .btn-tiktok:active { background: #000; border-color: #000; }
+    .btn-instagram:active { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-color: transparent; }
+    .btn-whatsapp:active { background: #25D366; border-color: #25D366; }
+
     /* ANIMATIONS */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -67,18 +146,24 @@
 </head>
 <body>
 
+  <!-- BACKGROUND ILLUSION LAYER -->
+  <div class="bg-illusion"></div>
+  <div class="bg-overlay"></div>
+
   <!-- NAVBAR -->
   <nav class="nav-fixed">
     <div style="max-width: 1000px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
-      <a href="#" onclick="navigateTo('home')" class="font-display" style="font-size: 1.1rem; color: white; text-decoration: none;"><span style="color: var(--accent-bright);">HADES</span> ACADEMY</a>
+      <a href="#" onclick="navigateTo('home')" class="font-display" style="font-size: 1.1rem; color: var(--primary); text-decoration: none; font-weight: 700;">
+        <span style="color: var(--gold);">ATHENA</span> ACADEMY
+      </a>
       <div style="display: flex; gap: 10px;">
-        <button id="nav-profile-btn" onclick="navigateTo('profile')" style="display: none;" class="btn-outline" style="padding: 8px 15px;">PROFILE</button>
-        <button id="nav-auth-btn" onclick="navigateTo('auth')" class="btn-outline" style="padding: 8px 15px;">ENTER</button>
+        <button id="nav-profile-btn" onclick="navigateTo('profile')" style="display: none;" class="btn-outline" style="padding: 8px 15px; border-width: 1px;">PROFILE</button>
+        <button id="nav-auth-btn" onclick="navigateTo('auth')" class="btn-main" style="padding: 8px 15px;">ENTER</button>
       </div>
     </div>
   </nav>
 
-  <!-- ===================== MODAL CONTAINER ===================== -->
+  <!-- MODAL CONTAINER -->
   <div id="main-modal" class="modal-overlay" onclick="closeModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--muted); font-size: 1.5rem;">&times;</button>
@@ -86,56 +171,44 @@
     </div>
   </div>
 
-  <!-- ===================== PAGE: HOME (BERANDA) ===================== -->
-  <div id="page-home" class="page active">
-    
+  <!-- PAGE: HOME -->
+  <div id="page-home" class="page active" style="padding-top: 80px;">
+ 
     <!-- HERO -->
-    <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative;">
-      <div style="position: absolute; top: 30%; left: 50%; transform: translateX(-50%); width: 500px; height: 500px; background: var(--accent); filter: blur(180px); opacity: 0.1; pointer-events: none;"></div>
-      
+    <section style="min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; position: relative;">
       <div style="position: relative; z-index: 10; max-width: 700px;">
         <div class="float-anim" style="margin-bottom: 25px;">
-          <!-- Greek Helmet SVG -->
-          <svg style="width: 70px; height: 70px; color: var(--accent-bright); filter: drop-shadow(0 0 15px var(--accent));" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-             <path d="M12 4C8 4 5 7 5 11C5 15 6 18 9 20H15C18 18 19 15 19 11C19 7 16 4 12 4Z"/>
-             <path d="M5 11H19"/>
-             <path d="M8 11V8"/>
-             <path d="M12 11V7"/>
-             <path d="M16 11V8"/>
+          <!-- Eagle Logo SVG -->
+          <svg style="width: 80px; height: 80px; color: var(--primary); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));" viewBox="0 0 24 24" fill="currentColor">
+             <path d="M12,2L1,9L5,11V17L12,21L19,17V11L23,9L12,2M12,4.3L17.5,8L12,11.7L6.5,8L12,4.3M7,12.5L11,15V17.5L7,15.5V12.5M17,12.5V15.5L13,17.5V15L17,12.5Z" />
           </svg>
         </div>
-        <p class="font-display" style="color: var(--gold); letter-spacing: 0.4em; font-size: 0.8rem; margin-bottom: 15px;">UNDERWORLD WISDOM</p>
-        <h1 class="font-display" style="font-size: 3rem; line-height: 1; margin-bottom: 20px; font-weight: 900; color: white;">
-          MASTER THE <br><span style="color: var(--accent-bright);">DARKNESS</span>
+        <p class="font-display" style="color: var(--gold); letter-spacing: 0.4em; font-size: 0.8rem; margin-bottom: 15px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">PATH TO GLORY</p>
+        <h1 class="font-display" style="font-size: 3rem; line-height: 1; margin-bottom: 20px; font-weight: 900; color: var(--primary); text-shadow: 0 2px 0 white;">
+          KNOWLEDGE IS <br><span style="color: var(--gold);">POWER</span>
         </h1>
-        <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">
-          Jalan transformasi diri berdasarkan filsafat kuno. Kekuatan lahir dari disiplin dan pemahaman diri yang mendalam.
+        <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; margin-left: auto; margin-right: auto; text-shadow: 0 1px 2px white;">
+          Bangun karaktermu dengan filsafat kuno. Raih grade tertinggi dan menjadi Elit Akademi.
         </p>
         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <button onclick="navigateTo('archives')" class="btn-blood">EXPLORE ARCHIVES</button>
+          <button onclick="navigateTo('archives')" class="btn-main">START LEARNING</button>
           <button onclick="navigateTo('auth')" class="btn-outline">JOIN NOW</button>
         </div>
       </div>
     </section>
 
     <!-- ORACLE QUOTE -->
-    <section id="wisdom" style="padding: 60px 20px; text-align: center; background: #080808;">
+    <section id="wisdom" style="padding: 60px 20px; text-align: center;">
       <div style="max-width: 600px; margin: 0 auto;">
-        <p class="font-display" style="color: var(--accent-bright); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">THE ORACLE</p>
-        <h2 class="font-display" style="font-size: 1.8rem; color: white; margin-bottom: 35px;">Daily Wisdom</h2>
-        
-        <div style="border: 1px solid var(--border); padding: 30px 20px;">
-          <blockquote id="quote-text" style="font-size: 1.4rem; font-style: italic; color: white; margin-bottom: 15px; transition: opacity 0.3s;">
-            "Kekuatan sejati lahir dari kegelapan yang kamu peluk."
+        <p class="font-display" style="color: var(--primary); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">THE ORACLE</p>
+        <h2 class="font-display" style="font-size: 1.8rem; color: var(--primary); margin-bottom: 35px;">Daily Wisdom</h2>
+ 
+        <div class="content-card" style="padding: 30px 20px; border-top: 4px solid var(--gold);">
+          <blockquote id="quote-text" style="font-size: 1.4rem; font-style: italic; color: var(--fg-text); margin-bottom: 15px; transition: opacity 0.3s;">
+            "Kekuatan sejati lahir dari pengetahuan yang dalam."
           </blockquote>
-          <p id="quote-author" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 20px;">— Unknown Master</p>
-          
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <button onclick="generateQuote()" class="btn-outline" style="font-size: 0.75rem;">SUMMON NEW</button>
-            <button onclick="saveQuote()" id="save-quote-btn" class="btn-ghost">
-              <svg style="width:20px; height:20px; vertical-align: middle;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            </button>
-          </div>
+          <p id="quote-author" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 20px;">— Master</p>
+          <button onclick="generateQuote()" class="btn-outline" style="font-size: 0.75rem;">NEXT WISDOM</button>
         </div>
       </div>
     </section>
@@ -144,190 +217,202 @@
     <section id="ritual" style="padding: 60px 20px;">
       <div style="max-width: 600px; margin: 0 auto;">
         <div style="text-align: center; margin-bottom: 30px;">
-          <p class="font-display" style="color: var(--accent-bright); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">PRACTICE</p>
-          <h2 class="font-display" style="font-size: 1.8rem; color: white;">Ritual of Discipline</h2>
+          <p class="font-display" style="color: var(--primary); letter-spacing: 0.2em; font-size: 0.8rem; margin-bottom: 10px;">TASKS</p>
+          <h2 class="font-display" style="font-size: 1.8rem; color: var(--primary);">Daily Discipline</h2>
         </div>
 
         <div id="ritual-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
 
-        <div style="margin-top: 20px; padding: 20px; border: 1px solid var(--border); text-align: center; background: var(--bg-card);">
-          <p style="color: var(--muted); font-size: 0.8rem;">POWER PROGRESS</p>
+        <div class="content-card" style="margin-top: 20px; padding: 20px; text-align: center; border-top: 4px solid var(--primary);">
+          <p style="color: var(--muted); font-size: 0.8rem;">PROGRESS</p>
           <div class="progress-container"><div id="progress-bar" class="progress-bar"></div></div>
-          <p id="power-score" style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); margin: 10px 0;">0 / 100</p>
-          <button onclick="resetRituals()" style="background: none; border: 1px solid var(--border); color: var(--muted); padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px;">RESET</button>
+          <p id="power-score" style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--primary); margin: 10px 0;">0 / 100</p>
+          <button onclick="navigateTo('recap')" class="btn-main" style="margin-top: 5px;">LIHAT REKAP NILAI</button>
+          <button onclick="resetRituals()" style="background: none; border: none; color: var(--danger); padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-left: 10px;">RESET</button>
         </div>
       </div>
     </section>
-    
-    <!-- QUICK LINK TO ARCHIVES -->
-    <section style="padding: 40px 20px; text-align: center; border-top: 1px solid var(--border);">
+ 
+    <!-- QUICK LINK -->
+    <section style="padding: 40px 20px; text-align: center;">
         <p style="color: var(--muted); margin-bottom: 15px;">Ready to learn?</p>
-        <button onclick="navigateTo('archives')" class="btn-blood">ENTER THE ARCHIVES</button>
+        <button onclick="navigateTo('archives')" class="btn-outline">ENTER THE ARCHIVES</button>
     </section>
 
   </div>
 
-  <!-- ===================== PAGE: ARCHIVES (EDUKASI) ===================== -->
-  <div id="page-archives" class="page" style="padding-top: 80px;">
-    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-      <div style="margin-bottom: 30px;">
-        <button onclick="navigateTo('home')" class="btn-ghost" style="margin-bottom: 20px;">&larr; Back to Home</button>
-        <h2 class="font-display" style="font-size: 2rem; color: white;">The Archives</h2>
-        <p style="color: var(--muted);">Pelajari filsafat yang membentuk para penakluk sejati.</p>
-      </div>
+  <!-- PAGE: REKAP TUGAS -->
+  <div id="page-recap" class="page" style="padding-top: 100px; padding-bottom: 60px;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+      <button onclick="navigateTo('home')" class="btn-back">&larr; Kembali ke Tugas</button>
+ 
+      <div class="content-card" style="padding: 30px; text-align: center; border-top: 4px solid var(--gold);">
+        <h2 class="font-display" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 10px;">LAPORAN PRESTASI</h2>
+        <p style="color: var(--muted); margin-bottom: 30px;">Rekap nilai disiplin harianmu.</p>
 
-      <div style="display: grid; gap: 15px;">
-        
-        <!-- Card 1 -->
-        <div class="edu-card" onclick="openModal('stoic')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Stoicism: The Iron Will</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Kuasai emosi, kuasai dunia.</p>
+        <div style="background: rgba(255,255,255,0.5); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 5px;">GRADE KAMU</p>
+            <h1 id="grade-display" style="font-size: 5rem; font-family: 'Cinzel'; color: var(--primary); font-weight: 900; line-height: 1;">C</h1>
+            <p id="grade-title" style="color: var(--gold); font-weight: bold; letter-spacing: 1px;">CITIZEN</p>
         </div>
 
-        <!-- Card 2 -->
-        <div class="edu-card" onclick="openModal('nietzsche')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Nietzschean Will to Power</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Jadilah tuan atas takdirmu sendiri.</p>
+        <div style="text-align: left; margin-bottom: 20px;">
+            <p style="margin-bottom: 10px; color: var(--fg-text); font-size: 1.1rem;"><strong>Detail Nilai:</strong></p>
+            <div style="background: rgba(255,255,255,0.5); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span>Total Poin</span>
+                <span id="recap-points" style="font-weight: bold; color: var(--primary);">0</span>
+            </div>
+            <div style="background: rgba(255,255,255,0.5); padding: 10px; border-radius: 4px; display: flex; justify-content: space-between;">
+                <span>Status</span>
+                <span id="recap-status" style="font-weight: bold; color: var(--success);">Belum Selesai</span>
+            </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="edu-card" onclick="openModal('spartan')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Agoge: The Spartan Way</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Kesakitan adalah guru terbaik.</p>
+        <div style="border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px;">
+            <p style="color: var(--muted); font-size: 0.9rem;">Tingkatkan grade-mu dengan menyelesaikan semua tugas!</p>
         </div>
-
-        <!-- Card 4 -->
-        <div class="edu-card" onclick="openModal('shadow')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Jungian Shadow Work</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Hadapi monster di dalam dirimu.</p>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="edu-card" onclick="openModal('machiavelli')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Machiavellian Tactics</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Seni perang dalam dunia modern.</p>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="edu-card" onclick="openModal('minimalism')">
-          <h3 class="font-display" style="color: var(--gold); margin-bottom: 5px;">Dark Minimalism</h3>
-          <p style="color: var(--muted); font-size: 0.9rem;">Kurangi kebisingan, tingkatkan kekuatan.</p>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- ===================== PAGE: AUTH (LOGIN/DAFTAR) ===================== -->
+  <!-- PAGE: ARCHIVES -->
+  <div id="page-archives" class="page" style="padding-top: 100px;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+      <button onclick="navigateTo('home')" class="btn-back">&larr; Back to Home</button>
+      <h2 class="font-display" style="font-size: 2rem; color: var(--primary);">The Archives</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Pelajari filsafat yang membentuk para penakluk sejati.</p>
+
+      <div style="display: grid; gap: 15px;">
+        <div class="content-card edu-card" onclick="openModal('stoic')">
+          <h3 class="font-display" style="color: var(--primary); margin-bottom: 5px;">Stoicism: The Iron Will</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Kuasai emosi, kuasai dunia.</p>
+        </div>
+        <div class="content-card edu-card" onclick="openModal('nietzsche')">
+          <h3 class="font-display" style="color: var(--primary); margin-bottom: 5px;">Nietzschean Will to Power</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Jadilah tuan atas takdirmu sendiri.</p>
+        </div>
+        <div class="content-card edu-card" onclick="openModal('spartan')">
+          <h3 class="font-display" style="color: var(--primary); margin-bottom: 5px;">Agoge: The Spartan Way</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Kesakitan adalah guru terbaik.</p>
+        </div>
+        <div class="content-card edu-card" onclick="openModal('shadow')">
+          <h3 class="font-display" style="color: var(--primary); margin-bottom: 5px;">Jungian Shadow Work</h3>
+          <p style="color: var(--muted); font-size: 0.9rem;">Hadapi monster di dalam dirimu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: AUTH -->
   <div id="page-auth" class="page">
     <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 20px;">
       <div style="width: 100%; max-width: 400px;">
-        
-        <div style="background: rgba(10, 10, 10, 0.95); border: 1px solid var(--border); border-top: 4px solid var(--accent); padding: 30px 25px;">
-          
+ 
+        <div class="content-card" style="padding: 30px 25px; border-top: 4px solid var(--gold);">
+ 
           <div style="text-align: center; margin-bottom: 25px;">
-            <h1 class="font-display" style="font-size: 1.6rem; color: white; letter-spacing: 2px;">THE GATES</h1>
+            <svg style="width: 50px; height: 50px; color: var(--primary); margin-bottom: 10px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2L1,9L5,11V17L12,21L19,17V11L23,9L12,2M12,4.3L17.5,8L12,11.7L6.5,8L12,4.3Z" /></svg>
+            <h1 class="font-display" style="font-size: 1.6rem; color: var(--primary); letter-spacing: 2px;">THE GATES</h1>
             <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Authentication Portal</p>
           </div>
 
-          <!-- Tabs -->
           <div style="display: flex; margin-bottom: 20px; border-bottom: 1px solid var(--border);">
             <button id="tab-login" onclick="switchAuthTab('login')" class="auth-tab active font-display">MASUK</button>
             <button id="tab-reg" onclick="switchAuthTab('register')" class="auth-tab font-display">DAFTAR</button>
           </div>
 
-          <!-- Form Login -->
           <form id="form-login" onsubmit="handleLogin(event)">
             <input type="email" id="login-email" class="form-input" placeholder="Email" required>
             <input type="password" id="login-pass" class="form-input" placeholder="Password" required>
-            <button type="submit" class="btn-blood" style="width: 100%;">MASUK</button>
+            <button type="submit" class="btn-main" style="width: 100%;">MASUK</button>
           </form>
 
-          <!-- Form Register -->
           <form id="form-register" style="display: none;" onsubmit="handleRegister(event)">
             <input type="text" id="reg-name" class="form-input" placeholder="Nama Samaran" required>
             <input type="email" id="reg-email" class="form-input" placeholder="Email" required>
             <input type="password" id="reg-pass" class="form-input" placeholder="Password" required>
-            
+ 
             <label class="font-display" style="font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 10px;">PILIH JALANMU:</label>
             <select id="reg-path" class="form-input" style="cursor: pointer;">
               <option value="Stoic Iron">Stoic Iron (Ketahanan Mental)</option>
               <option value="Spartan Way">Spartan Way (Disiplin Fisik)</option>
               <option value="Shadow Walker">Shadow Walker (Pemahaman Diri)</option>
             </select>
-            
-            <button type="submit" class="btn-blood" style="width: 100%;">DAFTAR</button>
+ 
+            <button type="submit" class="btn-main" style="width: 100%;">DAFTAR</button>
           </form>
 
         </div>
         <div style="text-align: center; margin-top: 15px;">
-            <button onclick="navigateTo('home')" class="btn-ghost" style="color: var(--gold);">Kembali ke Beranda</button>
+            <button onclick="navigateTo('home')" class="btn-ghost" style="color: var(--primary);">Kembali ke Beranda</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===================== PAGE: PROFILE ===================== -->
-  <div id="page-profile" class="page" style="padding-top: 80px;">
+  <!-- PAGE: PROFILE -->
+  <div id="page-profile" class="page" style="padding-top: 100px;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px; text-align: center;">
-        
-        <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 30px; margin-top: 30px;">
-            <svg style="width: 60px; height: 60px; color: var(--accent); margin-bottom: 15px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <h2 class="font-display" id="profile-name" style="font-size: 1.5rem; color: white;">Guest</h2>
+ 
+        <button onclick="navigateTo('home')" class="btn-back" style="margin: 0 auto 20px 0;">&larr; Kembali</button>
+
+        <div class="content-card" style="padding: 30px; margin-top: 10px; border-top: 4px solid var(--gold);">
+            <svg style="width: 60px; height: 60px; color: var(--primary); margin-bottom: 15px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <h2 class="font-display" id="profile-name" style="font-size: 1.5rem; color: var(--primary);">Guest</h2>
             <p id="profile-email" style="color: var(--muted); margin-bottom: 20px;">email@example.com</p>
-            
+ 
             <div style="border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px;">
                 <p style="font-size: 0.8rem; color: var(--gold); letter-spacing: 1px;">YOUR PATH</p>
-                <h3 class="font-display" id="profile-path" style="font-size: 1.2rem; color: white;">Not Selected</h3>
+                <h3 class="font-display" id="profile-path" style="font-size: 1.2rem; color: var(--fg-text);">Not Selected</h3>
             </div>
 
             <div style="margin-top: 30px;">
-                <p style="font-size: 0.8rem; color: var(--muted);">TOTAL POWER ACCUMULATED</p>
-                <h2 id="total-power-profile" style="font-size: 2rem; color: var(--accent-bright);">0</h2>
+                <p style="font-size: 0.8rem; color: var(--muted);">TOTAL POWER</p>
+                <h2 id="total-power-profile" style="font-size: 2rem; color: var(--primary);">0</h2>
             </div>
 
-            <button onclick="handleLogout()" class="btn-outline" style="margin-top: 30px; border-color: var(--accent); color: var(--accent);">LOGOUT</button>
+            <button onclick="handleLogout()" class="btn-outline" style="margin-top: 30px; border-color: var(--danger); color: var(--danger);">LOGOUT</button>
         </div>
     </div>
   </div>
 
-  <!-- ===================== SCRIPTS ===================== -->
+  <!-- FOOTER -->
+  <footer style="padding: 40px 20px; text-align: center; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: white;">
+    <p class="font-display" style="color: var(--gold); font-size: 0.9rem; margin-bottom: 20px;">CONNECT WITH US</p>
+ 
+    <div class="social-btn-container">
+      <!-- TIKTOK -->
+      <a href="https://www.tiktok.com/@dailydisipline" target="\_blank" class="social-btn btn-tiktok" title="TikTok">
+        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <!-- INSTAGRAM -->
+      <a href="https://www.instagram.com/dixiatika" target="\_blank" class="social-btn btn-instagram" title="Instagram">
+        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <!-- WHATSAPP -->
+      <a href="https://wa.me/6283121158194" target="\_blank" class="social-btn btn-whatsapp" title="WhatsApp">
+        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+    <p style="color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-top: 30px;">2024 Athena Academy. All rights reserved.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
   <script>
-    // --- DATA ARCHIVES ---
+    // --- DATA ---
     const archives = {
-      stoic: {
-        title: "STOICISM: THE IRON WILL",
-        content: "Stoicism adalah filsafat kuno yang mengajarkan pengembangan kendali diri dan kekuatan mental untuk mengatasi emosi destruktif. Didirikan oleh Zeno dari Citium. <br><br><strong>Kunci:</strong> Fokus pada apa yang bisa kamu kontrol, terima apa yang tidak bisa. 'Kamu memiliki kekuatan atas pikiranmu - bukan di luar kejadian.'"
-      },
-      nietzsche: {
-        title: "WILL TO POWER",
-        content: "Konsep Friedrich Nietzsche yang menggambarkan dorongan utama manusia bukan untuk bertahan hidup, melainkan untuk mengekspresikan kekuatan dan mengatasi diri sendiri. <br><br><strong>Kunci:</strong> Ciptakan nilai-nilaimu sendiri. Jadilah 'Ubermensch' (Manusia Super) yang tidak tunduk pada moralitas massa."
-      },
-      spartan: {
-        title: "THE AGOGE",
-        content: "Sistem pendidikan militer Sparta yang melatih warga negara menjadi prajurit tangguh sejak usia 7 tahun. Fokus pada kesulitan fisik, kekurangan, dan loyalitas kelompok. <br><br><strong>Kunci:</strong> Ketergantungan pada diri sendiri, toleransi rasa sakit yang tinggi, dan disiplin tanpa kompromi."
-      },
-      shadow: {
-        title: "SHADOW WORK",
-        content: "Diperkenalkan oleh Carl Jung, 'Bayangan' adalah sisi tidak sadar dari kepribadian yang ego sadar tidak mengakuinya. <br><br><strong>Kunci:</strong> Hadapi sisi gelapmu—keserakahan, iri, kemarahan—dan integrasikan. Bayangan yang diabaikan akan memanifestasikan dirinya sebagai nasib buruk."
-      },
-      machiavelli: {
-        title: "MACHIAVELLIAN TACTICS",
-        content: "Berasal dari Niccolò Machiavelli, penulis 'The Prince'. Fokus pada realisme politik dan bagaimana mempertahankan kekuasaan. <br><br><strong>Kunci:</strong> 'Tujuan menghalalkan cara.' Lebih baik ditakuti daripada dicintai jika tidak bisa mendapatkan keduanya."
-      },
-      minimalism: {
-        title: "DARK MINIMALISM",
-        content: "Penghapusan segala sesuatu yang tidak esensial untuk fokus pada kekuatan. Bukan sekadar estetika bersih, tapi strategi perang mental. <br><br><strong>Kunci:</strong> Kurangi kebisingan visual dan mental. Setiap benda yang kamu miliki harus memiliki fungsi atau makna kekuatan."
-      }
+      stoic: { title: "STOICISM", content: "Stoicism adalah filsafat kuno yang mengajarkan pengembangan kendali diri..." },
+      nietzsche: { title: "WILL TO POWER", content: "Konsep Friedrich Nietzsche yang menggambarkan dorongan utama manusia..." },
+      spartan: { title: "THE AGOGE", content: "Sistem pendidikan militer Sparta yang melatih warga negara..." },
+      shadow: { title: "SHADOW WORK", content: "Diperkenalkan oleh Carl Jung, 'Bayangan' adalah sisi tidak sadar..." }
     };
 
     const quotes = [
-      { text: "Kekuatan sejati lahir dari kegelapan yang kamu peluk.", author: "Unknown Master" },
+      { text: "Kekuatan sejati lahir dari pengetahuan yang dalam.", author: "Master" },
       { text: "Jangan berdoa untuk kehidupan yang lebih mudah. Berdoalah untuk menjadi lebih kuat.", author: "Marcus Aurelius" },
-      { text: "Barangsiapa memiliki mengapa untuk hidup, dapat menanggung hampir semua bagaimana.", author: "Friedrich Nietzsche" },
-      { text: "Kamu memiliki kekuatan atas pikiranmu, bukan di luar kejadian.", author: "Marcus Aurelius" },
-      { text: "Rasa sakit tidak bisa dihindari, tapi penderitaan adalah pilihan.", author: "Haruki Murakami" }
+      { text: "Barangsiapa memiliki mengapa untuk hidup, dapat menanggung hampir semua bagaimana.", author: "Friedrich Nietzsche" }
     ];
+ 
     const rituals = [
       { id: 'cold', name: 'Cold Shower', desc: '5 menit air dingin', power: 20 },
       { id: 'silence', name: 'Meditation', desc: '15 menit keheningan', power: 20 },
@@ -337,13 +422,7 @@
     ];
 
     // --- STATE ---
-    let state = {
-      isLoggedIn: false,
-      user: null,
-      power: 0,
-      rituals: [],
-      savedQuotes: []
-    };
+    let state = { isLoggedIn: false, user: null, power: 0, rituals: [] };
 
     // --- INITIALIZATION ---
     document.addEventListener('DOMContentLoaded', () => {
@@ -354,13 +433,23 @@
 
     function loadState() {
       try {
-        const saved = localStorage.getItem('hades_state');
+        const saved = localStorage.getItem('athena_state_v2');
         if (saved) state = JSON.parse(saved);
       } catch(e) {}
     }
 
     function saveState() {
-      try { localStorage.setItem('hades_state', JSON.stringify(state)); } catch(e) {}
+      try { localStorage.setItem('athena_state_v2', JSON.stringify(state)); } catch(e) {}
+    }
+
+    // --- GRADING SYSTEM ---
+    function calculateGrade(score) {
+        if (score >= 100) return { grade: 'S', title: 'LEGENDARY', color: '#FFD700' };
+        if (score >= 80) return { grade: 'A', title: 'MASTER', color: '#0D47A1' };
+        if (score >= 60) return { grade: 'B', title: 'WARRIOR', color: '#1565C0' };
+        if (score >= 40) return { grade: 'C', title: 'CITIZEN', color: '#5A6A7A' };
+        if (score >= 20) return { grade: 'D', title: 'TRAINEE', color: '#C62828' };
+        return { grade: 'E', title: 'SLAVE', color: '#333' };
     }
 
     function updateUI() {
@@ -370,12 +459,9 @@
       if (state.isLoggedIn) {
         if(authBtn) authBtn.style.display = 'none';
         if(profileBtn) profileBtn.style.display = 'block';
-        
-        // Update Profile Page
         if(document.getElementById('profile-name')) document.getElementById('profile-name').innerText = state.user.name;
         if(document.getElementById('profile-email')) document.getElementById('profile-email').innerText = state.user.email;
         if(document.getElementById('profile-path')) document.getElementById('profile-path').innerText = state.user.path;
-        if(document.getElementById('total-power-profile')) document.getElementById('total-power-profile').innerText = state.power;
       } else {
         if(authBtn) authBtn.style.display = 'block';
         if(profileBtn) profileBtn.style.display = 'none';
@@ -386,8 +472,27 @@
     // --- NAVIGATION ---
     function navigateTo(pageId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + pageId).classList.add('active');
-      window.scrollTo(0, 0);
+      const targetPage = document.getElementById('page-' + pageId);
+      if(targetPage) {
+          targetPage.classList.add('active');
+          window.scrollTo(0, 0);
+      }
+ 
+      if(pageId === 'recap') {
+          const result = calculateGrade(state.power);
+          document.getElementById('grade-display').innerText = result.grade;
+          document.getElementById('grade-display').style.color = result.color;
+          document.getElementById('grade-title').innerText = result.title;
+          document.getElementById('recap-points').innerText = state.power;
+ 
+          if(state.power >= 100) {
+              document.getElementById('recap-status').innerText = "SEMPURNA";
+              document.getElementById('recap-status').style.color = "#2E7D32";
+          } else {
+              document.getElementById('recap-status').innerText = "DALAM PROSES";
+              document.getElementById('recap-status').style.color = "#C5A059";
+          }
+      }
     }
 
     // --- AUTH LOGIC ---
@@ -398,11 +503,11 @@
       const formReg = document.getElementById('form-register');
 
       if (tab === 'login') {
-        btnLogin.classList.add('active'); btnLogin.style.borderBottom = '2px solid var(--accent)';
+        btnLogin.classList.add('active'); btnLogin.style.borderBottom = '2px solid var(--primary)';
         btnReg.classList.remove('active'); btnReg.style.borderBottom = 'none';
         formLogin.style.display = 'block'; formReg.style.display = 'none';
       } else {
-        btnReg.classList.add('active'); btnReg.style.borderBottom = '2px solid var(--accent)';
+        btnReg.classList.add('active'); btnReg.style.borderBottom = '2px solid var(--primary)';
         btnLogin.classList.remove('active'); btnLogin.style.borderBottom = 'none';
         formLogin.style.display = 'none'; formReg.style.display = 'block';
       }
@@ -411,10 +516,7 @@
     function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('login-email').value;
-      // Simulate login check (in real app, check DB)
-      // Here we just log in as whoever registered last or guest
       if(!state.user) state.user = { name: "Guest", email: email, path: "Unknown" };
-      
       state.isLoggedIn = true;
       saveState();
       updateUI();
@@ -430,11 +532,11 @@
 
       state.user = { name, email, path };
       state.isLoggedIn = true;
-      state.power = 0; // reset power for new user
+      state.power = 0;
       state.rituals = [];
       saveState();
       updateUI();
-      alert("Selamat datang di Akademi. Jalanmu dimulai sekarang.");
+      alert("Selamat datang di Akademi.");
       navigateTo('home');
     }
 
@@ -449,10 +551,9 @@
     function openModal(id) {
       const data = archives[id];
       if(!data) return;
-      
       document.getElementById('modal-body').innerHTML = `
-        <h3 class="font-display" style="font-size: 1.3rem; color: var(--gold); margin-bottom: 15px;">${data.title}</h3>
-        <div style="color: var(--fg); line-height: 1.6;">${data.content}</div>
+        <h3 class="font-display" style="font-size: 1.3rem; color: var(--primary); margin-bottom: 15px;">${data.title}</h3>
+        <div style="color: var(--fg-text); line-height: 1.6;">${data.content}</div>
       `;
       document.getElementById('main-modal').classList.add('active');
     }
@@ -468,7 +569,6 @@
       const textEl = document.getElementById('quote-text');
       const authorEl = document.getElementById('quote-author');
       const randomQ = quotes[Math.floor(Math.random() * quotes.length)];
-      
       textEl.style.opacity = 0;
       setTimeout(() => {
         textEl.textContent = `"${randomQ.text}"`;
@@ -477,35 +577,31 @@
       }, 300);
     }
 
-    function saveQuote() {
-      alert("Quote disimpan ke jurnal batinimu (Fitur simulasi).");
-    }
-
     // --- RITUAL LOGIC ---
     function renderRituals() {
       const list = document.getElementById('ritual-list');
       if(!list) return;
       list.innerHTML = '';
-      
+ 
       rituals.forEach(r => {
         const isDone = state.rituals.includes(r.id);
         const div = document.createElement('div');
-        div.style.cssText = 'background: var(--bg-card); border: 1px solid var(--border); padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;';
-        if(isDone) div.style.borderColor = 'var(--gold)';
-        
+        div.className = 'content-card';
+        div.style.cssText = 'padding: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-left: 4px solid ' + (isDone ? 'var(--success)' : 'rgba(0,0,0,0.1)');
+ 
         div.innerHTML = `
           <div style="display: flex; align-items: center; gap: 15px;">
-            <div style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid ${isDone ? 'var(--gold)' : 'var(--muted)'}; background: ${isDone ? 'var(--gold)' : 'transparent'}; display: flex; align-items: center; justify-content: center;">
-              ${isDone ? '<svg style="width:14px; color:#000;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>' : ''}
+            <div style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid ${isDone ? 'var(--success)' : 'rgba(0,0,0,0.2)'}; background: ${isDone ? 'var(--success)' : 'transparent'}; display: flex; align-items: center; justify-content: center;">
+              ${isDone ? '<svg style="width:14px; color:white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>' : ''}
             </div>
             <div>
-              <h4 style="color: white; font-size: 1rem;">${r.name}</h4>
+              <h4 style="color: var(--fg-text); font-size: 1rem;">${r.name}</h4>
               <p style="color: var(--muted); font-size: 0.8rem;">${r.desc}</p>
             </div>
           </div>
-          <span style="color: var(--gold); font-size: 0.8rem;">+${r.power}</span>
+          <span style="color: var(--primary); font-family: 'Cinzel'; font-size: 0.9rem;">+${r.power}</span>
         `;
-        
+ 
         div.onclick = () => toggleRitual(r.id, r.power);
         list.appendChild(div);
       });
@@ -522,7 +618,7 @@
       }
       saveState();
       renderRituals();
-      updateUI(); // to update profile page if open
+      updateUI();
     }
 
     function resetRituals() {
@@ -537,14 +633,14 @@
       const scoreEl = document.getElementById('power-score');
       const barEl = document.getElementById('progress-bar');
       const profileScoreEl = document.getElementById('total-power-profile');
-      
+ 
       if(scoreEl) scoreEl.innerText = state.power + ' / 100';
       if(barEl) barEl.style.width = state.power + '%';
       if(profileScoreEl) profileScoreEl.innerText = state.power;
     }
 
     // Tab styling helper
-    document.head.insertAdjacentHTML('beforeend', `<style>.auth-tab{flex:1; background:none; border:none; color:var(--muted); padding:12px; cursor:pointer; border-bottom:2px solid transparent;}.auth-tab.active{color:var(--gold); border-bottom-color:var(--accent);}</style>`);
+    document.head.insertAdjacentHTML('beforeend', `<style>.auth-tab{flex:1; background:none; border:none; color:var(--muted); padding:12px; cursor:pointer; border-bottom:2px solid transparent;}.auth-tab.active{color:var(--primary); border-bottom-color:var(--primary);}</style>`);
   </script>
 </body>
 </html>
