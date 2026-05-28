@@ -56,15 +56,14 @@
             transition: transform 0.5s ease-out;
         }
         
-        .course-card {
+        .course-card, .ebook-card {
             transition: all 0.3s ease;
         }
-        .course-card:hover {
+        .course-card:hover, .ebook-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
-        /* Page Modal Scroll */
         .page-modal-content {
             max-height: 70vh;
             overflow-y: auto;
@@ -79,6 +78,25 @@
         .page-modal-content::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 3px;
+        }
+        
+        .ebook-cover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .ebook-cover-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .ebook-cover-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .ebook-cover-4 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .ebook-cover-5 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .ebook-cover-6 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
     </style>
 </head>
@@ -103,6 +121,7 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#beranda" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">Beranda</a>
                     <a href="#kursus" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">Kursus</a>
+                    <a href="#ebook" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">E-Book</a>
                     <a href="#fitur" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">Fitur</a>
                     <a href="#harga" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">Harga</a>
                     <a href="#faq" class="nav-link text-slate-600 hover:text-red-600 transition-colors font-medium">FAQ</a>
@@ -128,6 +147,7 @@
             <div class="px-6 py-4 space-y-4">
                 <a href="#beranda" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">Beranda</a>
                 <a href="#kursus" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">Kursus</a>
+                <a href="#ebook" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">E-Book</a>
                 <a href="#fitur" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">Fitur</a>
                 <a href="#harga" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">Harga</a>
                 <a href="#faq" class="block py-2 text-slate-600 font-medium" onclick="closeMobileMenu()">FAQ</a>
@@ -140,7 +160,6 @@
 
     <!-- Hero Section -->
     <section id="beranda" class="min-h-screen pt-24 flex items-center relative overflow-hidden">
-        <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-20 left-10 w-72 h-72 bg-red-600 rounded-full blur-3xl"></div>
             <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
@@ -157,7 +176,7 @@
                         <span class="font-serif italic text-red-600">Di Mana Saja</span>
                     </h1>
                     <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-lg">
-                        Akses lebih dari 500+ kursus berkualitas dari instruktur terbaik. Tingkatkan skill Anda dengan materi yang terstruktur dan sertifikat resmi.
+                        Akses lebih dari 500+ kursus dan 100+ ebook berkualitas dari instruktur terbaik. Tingkatkan skill Anda dengan materi yang terstruktur.
                     </p>
                     <div class="flex flex-wrap gap-4 mb-10">
                         <button onclick="openModal('registerModal')" class="bg-red-600 text-white px-8 py-4 rounded-xl font-medium hover:-translate-y-1 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-red-600/30 flex items-center gap-2">
@@ -171,18 +190,22 @@
                     </div>
                     
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-6">
+                    <div class="grid grid-cols-4 gap-4">
                         <div class="text-center md:text-left">
-                            <div class="text-3xl font-semibold text-slate-900">50K+</div>
-                            <div class="text-sm text-slate-500">Pengguna Aktif</div>
+                            <div class="text-2xl md:text-3xl font-semibold text-slate-900">50K+</div>
+                            <div class="text-xs md:text-sm text-slate-500">Pengguna</div>
                         </div>
                         <div class="text-center md:text-left">
-                            <div class="text-3xl font-semibold text-slate-900">500+</div>
-                            <div class="text-sm text-slate-500">Kursus</div>
+                            <div class="text-2xl md:text-3xl font-semibold text-slate-900">500+</div>
+                            <div class="text-xs md:text-sm text-slate-500">Kursus</div>
                         </div>
                         <div class="text-center md:text-left">
-                            <div class="text-3xl font-semibold text-slate-900">4.9</div>
-                            <div class="text-sm text-slate-500">Rating</div>
+                            <div class="text-2xl md:text-3xl font-semibold text-slate-900">100+</div>
+                            <div class="text-xs md:text-sm text-slate-500">E-Book</div>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <div class="text-2xl md:text-3xl font-semibold text-slate-900">4.9</div>
+                            <div class="text-xs md:text-sm text-slate-500">Rating</div>
                         </div>
                     </div>
                 </div>
@@ -191,7 +214,6 @@
                     <div class="relative z-10">
                         <img src="https://picsum.photos/seed/education-hero/600/500.jpg" alt="Student Learning" class="rounded-2xl shadow-2xl">
                     </div>
-                    <!-- Floating Cards -->
                     <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3 animate-float">
                         <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                             <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
@@ -202,12 +224,12 @@
                         </div>
                     </div>
                     <div class="absolute -top-6 -right-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3 animate-float" style="animation-delay: 0.5s">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                            <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                            <i data-lucide="book" class="w-6 h-6 text-purple-600"></i>
                         </div>
                         <div>
-                            <div class="font-semibold text-slate-800">500+</div>
-                            <div class="text-sm text-slate-500">Instruktur Ahli</div>
+                            <div class="font-semibold text-slate-800">100+</div>
+                            <div class="text-sm text-slate-500">E-Book</div>
                         </div>
                     </div>
                 </div>
@@ -225,7 +247,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
                 <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
                     <div class="w-14 h-14 bg-red-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
                         <i data-lucide="video" class="w-7 h-7 text-red-600 group-hover:text-white transition-colors"></i>
@@ -234,16 +255,14 @@
                     <p class="text-slate-600 group-hover:text-white/80 transition-colors">Semua materi video dalam kualitas HD dengan subtitle multi-bahasa untuk pengalaman belajar optimal.</p>
                 </div>
                 
-                <!-- Feature 2 -->
                 <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
                     <div class="w-14 h-14 bg-blue-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                        <i data-lucide="smartphone" class="w-7 h-7 text-blue-600 group-hover:text-white transition-colors"></i>
+                        <i data-lucide="book-open" class="w-7 h-7 text-blue-600 group-hover:text-white transition-colors"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Akses Mobile</h3>
-                    <p class="text-slate-600 group-hover:text-white/80 transition-colors">Belajar di mana saja dengan aplikasi mobile kami. Download materi untuk akses offline.</p>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">100+ E-Book</h3>
+                    <p class="text-slate-600 group-hover:text-white/80 transition-colors">Akses koleksi ebook lengkap dalam berbagai format. Bisa dibaca online atau didownload.</p>
                 </div>
                 
-                <!-- Feature 3 -->
                 <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
                     <div class="w-14 h-14 bg-green-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
                         <i data-lucide="award" class="w-7 h-7 text-green-600 group-hover:text-white transition-colors"></i>
@@ -252,25 +271,22 @@
                     <p class="text-slate-600 group-hover:text-white/80 transition-colors">Dapatkan sertifikat yang diakui industri setelah menyelesaikan kursus.</p>
                 </div>
                 
-                <!-- Feature 4 -->
                 <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
                     <div class="w-14 h-14 bg-purple-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                        <i data-lucide="message-circle" class="w-7 h-7 text-purple-600 group-hover:text-white transition-colors"></i>
+                        <i data-lucide="smartphone" class="w-7 h-7 text-purple-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Akses Mobile</h3>
+                    <p class="text-slate-600 group-hover:text-white/80 transition-colors">Belajar di mana saja dengan aplikasi mobile kami. Download materi untuk akses offline.</p>
+                </div>
+                
+                <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
+                    <div class="w-14 h-14 bg-yellow-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
+                        <i data-lucide="message-circle" class="w-7 h-7 text-yellow-600 group-hover:text-white transition-colors"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Forum Diskusi</h3>
                     <p class="text-slate-600 group-hover:text-white/80 transition-colors">Tanya jawab langsung dengan instruktur dan sesama pelajar di forum komunitas.</p>
                 </div>
                 
-                <!-- Feature 5 -->
-                <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
-                    <div class="w-14 h-14 bg-yellow-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
-                        <i data-lucide="clipboard-check" class="w-7 h-7 text-yellow-600 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-white transition-colors">Quiz & Project</h3>
-                    <p class="text-slate-600 group-hover:text-white/80 transition-colors">Uji pemahaman dengan quiz interaktif dan project nyata untuk portfolio Anda.</p>
-                </div>
-                
-                <!-- Feature 6 -->
                 <div class="group bg-slate-50 rounded-2xl p-8 hover:bg-red-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-600/20">
                     <div class="w-14 h-14 bg-pink-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
                         <i data-lucide="clock" class="w-7 h-7 text-pink-600 group-hover:text-white transition-colors"></i>
@@ -291,32 +307,17 @@
                 <p class="text-lg text-slate-600 max-w-2xl mx-auto">Pilih dari ratusan kursus berkualitas yang sesuai dengan tujuan karir Anda.</p>
             </div>
             
-            <!-- Filter Tabs -->
             <div class="flex flex-wrap justify-center gap-3 mb-12" id="courseFilters">
-                <button onclick="filterCourses('all')" class="filter-btn active px-6 py-3 rounded-xl font-medium transition-all bg-red-600 text-white" data-filter="all">
-                    Semua
-                </button>
-                <button onclick="filterCourses('programming')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white" data-filter="programming">
-                    Programming
-                </button>
-                <button onclick="filterCourses('design')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white" data-filter="design">
-                    Design
-                </button>
-                <button onclick="filterCourses('business')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white" data-filter="business">
-                    Business
-                </button>
-                <button onclick="filterCourses('marketing')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white" data-filter="marketing">
-                    Marketing
-                </button>
-                <button onclick="filterCourses('data')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white" data-filter="data">
-                    Data Science
-                </button>
+                <button onclick="filterCourses('all')" class="filter-btn active px-6 py-3 rounded-xl font-medium transition-all bg-red-600 text-white">Semua</button>
+                <button onclick="filterCourses('programming')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white">Programming</button>
+                <button onclick="filterCourses('design')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white">Design</button>
+                <button onclick="filterCourses('business')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white">Business</button>
+                <button onclick="filterCourses('marketing')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white">Marketing</button>
+                <button onclick="filterCourses('data')" class="filter-btn px-6 py-3 rounded-xl font-medium transition-all bg-white text-slate-600 hover:bg-red-600 hover:text-white">Data Science</button>
             </div>
             
-            <!-- Course Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="courseGrid">
-                
-                <!-- Course 1 - Programming -->
+                <!-- Course 1 -->
                 <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="programming">
                     <div class="relative">
                         <img src="https://picsum.photos/seed/web-dev-course/400/250.jpg" alt="Web Development" class="w-full h-44 object-cover">
@@ -331,10 +332,6 @@
                             <span class="text-xs text-slate-500">42 Jam</span>
                         </div>
                         <h3 class="text-lg font-semibold mb-2 line-clamp-2">Full-Stack Web Development dengan React & Node.js</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor1/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Budi Santoso</span>
-                        </div>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -345,19 +342,15 @@
                             </div>
                             <span class="text-xs text-slate-500">(2.450)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 299.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 899.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 299.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 899.000</span>
                         </div>
-                        <button onclick="enrollCourse('Full-Stack Web Development')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="enrollCourse('Full-Stack Web Development')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Enroll Sekarang</button>
                     </div>
                 </div>
                 
-                <!-- Course 2 - Design -->
+                <!-- Course 2 -->
                 <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="design">
                     <div class="relative">
                         <img src="https://picsum.photos/seed/ui-design-course/400/250.jpg" alt="UI/UX Design" class="w-full h-44 object-cover">
@@ -371,10 +364,6 @@
                             <span class="text-xs text-slate-500">36 Jam</span>
                         </div>
                         <h3 class="text-lg font-semibold mb-2 line-clamp-2">UI/UX Design Masterclass: Dari Pemula Hingga Mahir</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor2/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Sarah Wijaya</span>
-                        </div>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -385,60 +374,15 @@
                             </div>
                             <span class="text-xs text-slate-500">(1.890)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 249.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 749.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 249.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 749.000</span>
                         </div>
-                        <button onclick="enrollCourse('UI/UX Design Masterclass')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="enrollCourse('UI/UX Design Masterclass')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Enroll Sekarang</button>
                     </div>
                 </div>
                 
-                <!-- Course 3 - Business -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="business">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/business-course/400/250.jpg" alt="Business" class="w-full h-44 object-cover">
-                        <span class="absolute top-4 left-4 px-3 py-1 bg-green-600 text-white text-xs font-medium rounded-full">Baru</span>
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-green-100 text-green-600 text-xs font-medium rounded">Business</span>
-                            <span class="text-xs text-slate-500">28 Jam</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Digital Marketing & Business Strategy 2024</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor3/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Andi Pratama</span>
-                        </div>
-                        <div class="flex items-center gap-1 mb-3">
-                            <div class="flex items-center text-yellow-500">
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3"></i>
-                            </div>
-                            <span class="text-xs text-slate-500">(956)</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 199.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 599.000</span>
-                            </div>
-                        </div>
-                        <button onclick="enrollCourse('Digital Marketing Strategy')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Course 4 - Data Science -->
+                <!-- Course 3 -->
                 <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="data">
                     <div class="relative">
                         <img src="https://picsum.photos/seed/python-course/400/250.jpg" alt="Python" class="w-full h-44 object-cover">
@@ -453,10 +397,6 @@
                             <span class="text-xs text-slate-500">52 Jam</span>
                         </div>
                         <h3 class="text-lg font-semibold mb-2 line-clamp-2">Python untuk Data Science & Machine Learning</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor4/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Dr. Rini Kusuma</span>
-                        </div>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -467,19 +407,15 @@
                             </div>
                             <span class="text-xs text-slate-500">(3.210)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 349.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 999.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 349.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 999.000</span>
                         </div>
-                        <button onclick="enrollCourse('Python Data Science')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="enrollCourse('Python Data Science')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Enroll Sekarang</button>
                     </div>
                 </div>
                 
-                <!-- Course 5 - Marketing -->
+                <!-- Course 4 -->
                 <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="marketing">
                     <div class="relative">
                         <img src="https://picsum.photos/seed/social-media-course/400/250.jpg" alt="Social Media" class="w-full h-44 object-cover">
@@ -493,10 +429,6 @@
                             <span class="text-xs text-slate-500">24 Jam</span>
                         </div>
                         <h3 class="text-lg font-semibold mb-2 line-clamp-2">Social Media Marketing: Instagram & TikTok</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor5/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Maya Putri</span>
-                        </div>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -507,77 +439,51 @@
                             </div>
                             <span class="text-xs text-slate-500">(1.567)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 179.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 499.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 179.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 499.000</span>
                         </div>
-                        <button onclick="enrollCourse('Social Media Marketing')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="enrollCourse('Social Media Marketing')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Enroll Sekarang</button>
                     </div>
                 </div>
-                
-                <!-- Course 6 - Design -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="design">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/graphic-design-course/400/250.jpg" alt="Graphic Design" class="w-full h-44 object-cover">
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-medium rounded">Design</span>
-                            <span class="text-xs text-slate-500">38 Jam</span>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="loadMoreCourses()" class="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-800 px-8 py-4 rounded-xl font-medium hover:-translate-y-1 hover:shadow-lg transition-all duration-300" id="loadMoreBtn">
+                    <span>Lihat Lebih Banyak</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-Book Section -->
+    <section id="ebook" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-red-600 uppercase">E-Book Koleksi</span>
+                <h2 class="text-3xl md:text-5xl font-semibold tracking-tight mt-4 mb-6">Koleksi <span class="font-serif italic">E-Book</span> Premium</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Temukan berbagai ebook berkualitas untuk menunjang pembelajaran Anda. Tersedia dalam format PDF dan EPUB.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="ebookGrid">
+                <!-- E-Book 1 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover h-52 flex items-center justify-center p-6 relative">
+                        <div class="absolute top-4 left-4 px-2 py-1 bg-yellow-500 text-white text-xs font-medium rounded">Bestseller</div>
+                        <div class="text-center text-white">
+                            <i data-lucide="code" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Panduan Lengkap Web Developer</h4>
+                            <p class="text-sm opacity-80 mt-1">HTML, CSS, JavaScript & React</p>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Graphic Design: Adobe Creative Suite</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor6/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Rendi Hartono</span>
-                        </div>
-                        <div class="flex items-center gap-1 mb-3">
-                            <div class="flex items-center text-yellow-500">
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            </div>
-                            <span class="text-xs text-slate-500">(2.890)</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 279.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 799.000</span>
-                            </div>
-                        </div>
-                        <button onclick="enrollCourse('Graphic Design Complete')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Course 7 - Programming -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="programming">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/flutter-course/400/250.jpg" alt="Flutter" class="w-full h-44 object-cover">
-                        <span class="absolute top-4 left-4 px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">Update</span>
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded">Programming</span>
-                            <span class="text-xs text-slate-500">45 Jam</span>
+                            <span class="text-xs text-slate-500">450 Halaman</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Flutter & Dart: Build iOS & Android Apps</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor7/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Dimas Prayoga</span>
-                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Panduan Lengkap Menjadi Web Developer Profesional</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Pelajari fundamental hingga advanced web development dengan project nyata.</p>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -586,38 +492,103 @@
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
                             </div>
-                            <span class="text-xs text-slate-500">(1.876)</span>
+                            <span class="text-xs text-slate-500">(3.245)</span>
                         </div>
                         <div class="flex items-center justify-between mb-3">
                             <div>
-                                <span class="text-lg font-bold text-red-600">Rp 329.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 899.000</span>
+                                <span class="text-lg font-bold text-red-600">Rp 89.000</span>
+                                <span class="text-xs text-slate-400 line-through ml-2">Rp 199.000</span>
                             </div>
                         </div>
-                        <button onclick="enrollCourse('Flutter Development')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="openEbookDetail(0)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
                     </div>
                 </div>
                 
-                <!-- Course 8 - Data Science -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="data">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/sql-course/400/250.jpg" alt="SQL" class="w-full h-44 object-cover">
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
+                <!-- E-Book 2 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-2 h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-white">
+                            <i data-lucide="palette" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">UI/UX Design Mastery</h4>
+                            <p class="text-sm opacity-80 mt-1">Figma, Adobe XD & Design System</p>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-medium rounded">Design</span>
+                            <span class="text-xs text-slate-500">320 Halaman</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">UI/UX Design: Dasar Hingga Mahir</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Kuasai design thinking dan tools modern untuk menciptakan UX yang luar biasa.</p>
+                        <div class="flex items-center gap-1 mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                            <span class="text-xs text-slate-500">(2.156)</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 79.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 179.000</span>
+                        </div>
+                        <button onclick="openEbookDetail(1)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
+                    </div>
+                </div>
+                
+                <!-- E-Book 3 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-3 h-52 flex items-center justify-center p-6 relative">
+                        <div class="absolute top-4 left-4 px-2 py-1 bg-green-600 text-white text-xs font-medium rounded">Baru</div>
+                        <div class="text-center text-white">
+                            <i data-lucide="bar-chart-2" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Data Science with Python</h4>
+                            <p class="text-sm opacity-80 mt-1">Pandas, NumPy & Machine Learning</p>
+                        </div>
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded">Data Science</span>
-                            <span class="text-xs text-slate-500">32 Jam</span>
+                            <span class="text-xs text-slate-500">520 Halaman</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">SQL & Database Management Complete Guide</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor8/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Hendra Wijaya</span>
+                        <h3 class="text-lg font-semibold mb-2">Data Science dengan Python: Panduan Praktis</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Dari analisis data hingga machine learning dengan Python dan library populer.</p>
+                        <div class="flex items-center gap-1 mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                            <span class="text-xs text-slate-500">(1.890)</span>
                         </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 99.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 249.000</span>
+                        </div>
+                        <button onclick="openEbookDetail(2)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
+                    </div>
+                </div>
+                
+                <!-- E-Book 4 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-4 h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-white">
+                            <i data-lucide="trending-up" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Digital Marketing Strategy</h4>
+                            <p class="text-sm opacity-80 mt-1">SEO, SEM & Social Media</p>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-pink-100 text-pink-600 text-xs font-medium rounded">Marketing</span>
+                            <span class="text-xs text-slate-500">280 Halaman</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Strategi Digital Marketing untuk Bisnis</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Pelajari strategi pemasaran digital yang efektif untuk mengembangkan bisnis.</p>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -626,39 +597,32 @@
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
                                 <i data-lucide="star" class="w-3 h-3"></i>
                             </div>
-                            <span class="text-xs text-slate-500">(2.134)</span>
+                            <span class="text-xs text-slate-500">(1.456)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 199.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 599.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 69.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 149.000</span>
                         </div>
-                        <button onclick="enrollCourse('SQL Database')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="openEbookDetail(3)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
                     </div>
                 </div>
                 
-                <!-- Course 9 - Business -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="business">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/startup-course/400/250.jpg" alt="Startup" class="w-full h-44 object-cover">
-                        <span class="absolute top-4 left-4 px-3 py-1 bg-red-600 text-white text-xs font-medium rounded-full">Bestseller</span>
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
+                <!-- E-Book 5 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-5 h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-white">
+                            <i data-lucide="rocket" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Startup & Entrepreneurship</h4>
+                            <p class="text-sm opacity-80 mt-1">Dari Ide Hingga Funding</p>
+                        </div>
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="px-2 py-1 bg-green-100 text-green-600 text-xs font-medium rounded">Business</span>
-                            <span class="text-xs text-slate-500">20 Jam</span>
+                            <span class="text-xs text-slate-500">350 Halaman</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Startup Fundamentals: Dari Ide Hingga Funding</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor9/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Kevin Halim</span>
-                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Membangun Startup dari Nol</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Panduan lengkap membangun startup sukses dari ide hingga mendapat funding.</p>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -667,38 +631,100 @@
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
                             </div>
-                            <span class="text-xs text-slate-500">(3.456)</span>
+                            <span class="text-xs text-slate-500">(2.789)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 249.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 699.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 79.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 179.000</span>
                         </div>
-                        <button onclick="enrollCourse('Startup Fundamentals')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="openEbookDetail(4)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
                     </div>
                 </div>
                 
-                <!-- Course 10 - Marketing -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="marketing">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/seo-course/400/250.jpg" alt="SEO" class="w-full h-44 object-cover">
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
+                <!-- E-Book 6 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-6 h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-slate-700">
+                            <i data-lucide="shield" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Cybersecurity Essentials</h4>
+                            <p class="text-sm opacity-80 mt-1">Ethical Hacking & Security</p>
+                        </div>
                     </div>
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-pink-100 text-pink-600 text-xs font-medium rounded">Marketing</span>
-                            <span class="text-xs text-slate-500">18 Jam</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded">Programming</span>
+                            <span class="text-xs text-slate-500">420 Halaman</span>
                         </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">SEO Masterclass: Rank #1 di Google</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor10/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Arief Rahman</span>
+                        <h3 class="text-lg font-semibold mb-2">Cybersecurity & Ethical Hacking</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Pelajari keamanan siber dan ethical hacking untuk melindungi sistem digital.</p>
+                        <div class="flex items-center gap-1 mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3"></i>
+                            </div>
+                            <span class="text-xs text-slate-500">(987)</span>
                         </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 89.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 199.000</span>
+                        </div>
+                        <button onclick="openEbookDetail(5)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
+                    </div>
+                </div>
+                
+                <!-- E-Book 7 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-white">
+                            <i data-lucide="smartphone" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">Mobile App Development</h4>
+                            <p class="text-sm opacity-80 mt-1">Flutter & React Native</p>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded">Programming</span>
+                            <span class="text-xs text-slate-500">380 Halaman</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Membangun Aplikasi Mobile Cross-Platform</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Kuasai Flutter dan React Native untuk membuat aplikasi iOS & Android.</p>
+                        <div class="flex items-center gap-1 mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                            <span class="text-xs text-slate-500">(1.567)</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 85.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 189.000</span>
+                        </div>
+                        <button onclick="openEbookDetail(6)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
+                    </div>
+                </div>
+                
+                <!-- E-Book 8 -->
+                <div class="ebook-card bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                    <div class="ebook-cover-2 h-52 flex items-center justify-center p-6 relative">
+                        <div class="text-center text-white">
+                            <i data-lucide="database" class="w-12 h-12 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-lg leading-tight">SQL & Database Design</h4>
+                            <p class="text-sm opacity-80 mt-1">MySQL, PostgreSQL & MongoDB</p>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded">Data Science</span>
+                            <span class="text-xs text-slate-500">290 Halaman</span>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Database Design & SQL Mastery</h3>
+                        <p class="text-sm text-slate-500 mb-3 line-clamp-2">Pelajari SQL dan desain database dari dasar hingga optimasi performa.</p>
                         <div class="flex items-center gap-1 mb-3">
                             <div class="flex items-center text-yellow-500">
                                 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
@@ -709,230 +735,20 @@
                             </div>
                             <span class="text-xs text-slate-500">(1.234)</span>
                         </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 159.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 449.000</span>
-                            </div>
+                        <div class="mb-3">
+                            <span class="text-lg font-bold text-red-600">Rp 65.000</span>
+                            <span class="text-xs text-slate-400 line-through ml-2">Rp 149.000</span>
                         </div>
-                        <button onclick="enrollCourse('SEO Masterclass')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
+                        <button onclick="openEbookDetail(7)" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">Lihat Detail</button>
                     </div>
                 </div>
-                
-                <!-- Course 11 - Programming -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="programming">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/cybersecurity-course/400/250.jpg" alt="Cybersecurity" class="w-full h-44 object-cover">
-                        <span class="absolute top-4 left-4 px-3 py-1 bg-green-600 text-white text-xs font-medium rounded-full">Baru</span>
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded">Programming</span>
-                            <span class="text-xs text-slate-500">56 Jam</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">Cybersecurity & Ethical Hacking Complete</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor11/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Randi Firmansyah</span>
-                        </div>
-                        <div class="flex items-center gap-1 mb-3">
-                            <div class="flex items-center text-yellow-500">
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                            </div>
-                            <span class="text-xs text-slate-500">(987)</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 399.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 1.099.000</span>
-                            </div>
-                        </div>
-                        <button onclick="enrollCourse('Cybersecurity')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Course 12 - Design -->
-                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="design">
-                    <div class="relative">
-                        <img src="https://picsum.photos/seed/3d-design-course/400/250.jpg" alt="3D Design" class="w-full h-44 object-cover">
-                        <button onclick="toggleWishlist(this)" class="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center hover:bg-red-50 transition-colors">
-                            <i data-lucide="heart" class="w-5 h-5 text-slate-400"></i>
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-xs font-medium rounded">Design</span>
-                            <span class="text-xs text-slate-500">40 Jam</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2 line-clamp-2">3D Modeling & Animation dengan Blender</h3>
-                        <div class="flex items-center gap-2 mb-3">
-                            <img src="https://picsum.photos/seed/instructor12/40/40.jpg" alt="Instructor" class="w-6 h-6 rounded-full">
-                            <span class="text-xs text-slate-600">Fajar Nugraha</span>
-                        </div>
-                        <div class="flex items-center gap-1 mb-3">
-                            <div class="flex items-center text-yellow-500">
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
-                                <i data-lucide="star" class="w-3 h-3"></i>
-                            </div>
-                            <span class="text-xs text-slate-500">(756)</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-lg font-bold text-red-600">Rp 289.000</span>
-                                <span class="text-xs text-slate-400 line-through ml-2">Rp 799.000</span>
-                            </div>
-                        </div>
-                        <button onclick="enrollCourse('3D Design Blender')" class="w-full bg-red-600 text-white py-2.5 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Enroll Sekarang
-                        </button>
-                    </div>
-                </div>
-                
             </div>
             
-            <!-- Load More Button -->
             <div class="text-center mt-12">
-                <button onclick="loadMoreCourses()" class="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-800 px-8 py-4 rounded-xl font-medium hover:-translate-y-1 hover:shadow-lg transition-all duration-300" id="loadMoreBtn">
-                    <span>Lihat Lebih Banyak</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-24 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest text-red-600 uppercase">Testimoni</span>
-                <h2 class="text-3xl md:text-5xl font-semibold tracking-tight mt-4 mb-6">Apa Kata <span class="font-serif italic">Mereka?</span></h2>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Ribuan pelajar sudah merasakan manfaat belajar di EduLearn.</p>
-            </div>
-            
-            <!-- Carousel -->
-            <div class="relative">
-                <div class="overflow-hidden">
-                    <div class="carousel-track flex gap-8 transition-transform duration-500" id="testimonialTrack">
-                        <!-- Testimonial 1 -->
-                        <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] bg-slate-50 rounded-2xl p-8">
-                            <div class="flex items-center text-yellow-500 mb-4">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                            <p class="text-slate-600 mb-6 leading-relaxed">"Kursus Web Development di EduLearn benar-benar mengubah karir saya. Sekarang sudah bekerja sebagai Full-Stack Developer di perusahaan impian!"</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://picsum.photos/seed/user1/50/50.jpg" alt="User" class="w-12 h-12 rounded-full">
-                                <div>
-                                    <div class="font-semibold">Ahmad Fadli</div>
-                                    <div class="text-sm text-slate-500">Full-Stack Developer</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 2 -->
-                        <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] bg-slate-50 rounded-2xl p-8">
-                            <div class="flex items-center text-yellow-500 mb-4">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                            <p class="text-slate-600 mb-6 leading-relaxed">"Materi UI/UX Design sangat komprehensif dan praktis. Instrukturnya juga sangat responsif dalam menjawab pertanyaan."</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://picsum.photos/seed/user2/50/50.jpg" alt="User" class="w-12 h-12 rounded-full">
-                                <div>
-                                    <div class="font-semibold">Dina Permata</div>
-                                    <div class="text-sm text-slate-500">UI/UX Designer</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 3 -->
-                        <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] bg-slate-50 rounded-2xl p-8">
-                            <div class="flex items-center text-yellow-500 mb-4">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                            <p class="text-slate-600 mb-6 leading-relaxed">"Berkat kursus Digital Marketing, bisnis online saya berkembang pesat. Omzet naik 300% dalam 3 bulan!"</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://picsum.photos/seed/user3/50/50.jpg" alt="User" class="w-12 h-12 rounded-full">
-                                <div>
-                                    <div class="font-semibold">Rizky Pratama</div>
-                                    <div class="text-sm text-slate-500">Entrepreneur</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 4 -->
-                        <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] bg-slate-50 rounded-2xl p-8">
-                            <div class="flex items-center text-yellow-500 mb-4">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                            <p class="text-slate-600 mb-6 leading-relaxed">"Platform terbaik untuk belajar Data Science. Project-based learning-nya sangat membantu dalam memahami konsep."</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://picsum.photos/seed/user4/50/50.jpg" alt="User" class="w-12 h-12 rounded-full">
-                                <div>
-                                    <div class="font-semibold">Siti Nurhaliza</div>
-                                    <div class="text-sm text-slate-500">Data Analyst</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Testimonial 5 -->
-                        <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] bg-slate-50 rounded-2xl p-8">
-                            <div class="flex items-center text-yellow-500 mb-4">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            </div>
-                            <p class="text-slate-600 mb-6 leading-relaxed">"Sertifikat dari EduLearn diakui oleh perusahaan tempat saya melamar. Sangat membantu dalam proses rekrutmen."</p>
-                            <div class="flex items-center gap-4">
-                                <img src="https://picsum.photos/seed/user5/50/50.jpg" alt="User" class="w-12 h-12 rounded-full">
-                                <div>
-                                    <div class="font-semibold">Benny Wijaya</div>
-                                    <div class="text-sm text-slate-500">Software Engineer</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Carousel Controls -->
-                <div class="flex justify-center gap-4 mt-8">
-                    <button onclick="moveCarousel(-1)" class="w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300">
-                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                    </button>
-                    <button onclick="moveCarousel(1)" class="w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300">
-                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                    </button>
-                </div>
+                <a href="https://link.id" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-8 py-4 rounded-xl font-medium hover:-translate-y-1 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    <span>Lihat Semua E-Book di Link.id</span>
+                </a>
             </div>
         </div>
     </section>
@@ -946,7 +762,6 @@
                 <p class="text-lg text-slate-600 max-w-2xl mx-auto">Investasi terbaik untuk masa depan Anda. Pilih paket yang sesuai dengan kebutuhan.</p>
             </div>
             
-            <!-- Billing Toggle -->
             <div class="flex justify-center items-center gap-4 mb-12">
                 <span class="text-slate-600" id="monthlyLabel">Bulanan</span>
                 <button onclick="toggleBilling()" class="relative w-16 h-8 bg-red-600 rounded-full transition-colors" id="billingToggle">
@@ -966,37 +781,17 @@
                         <span class="text-4xl font-bold">Gratis</span>
                     </div>
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Akses 10 kursus gratis</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Video quality standar</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Akses forum komunitas</span>
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-400">
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                            <span>Sertifikat</span>
-                        </li>
-                        <li class="flex items-center gap-3 text-slate-400">
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                            <span>Konsultasi mentor</span>
-                        </li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Akses 10 kursus gratis</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>5 e-book gratis</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Video quality standar</span></li>
+                        <li class="flex items-center gap-3 text-slate-400"><i data-lucide="x" class="w-5 h-5"></i><span>Sertifikat</span></li>
                     </ul>
-                    <button onclick="selectPlan('Basic', 'Gratis')" class="w-full py-4 border-2 border-slate-200 rounded-xl font-medium hover:border-red-600 hover:text-red-600 transition-colors">
-                        Mulai Gratis
-                    </button>
+                    <button onclick="selectPlan('Basic', 'Gratis')" class="w-full py-4 border-2 border-slate-200 rounded-xl font-medium hover:border-red-600 hover:text-red-600 transition-colors">Mulai Gratis</button>
                 </div>
                 
                 <!-- Pro Plan -->
                 <div class="bg-red-600 rounded-2xl p-8 text-white relative transform scale-105 shadow-2xl shadow-red-600/30">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-yellow-500 text-slate-900 text-sm font-medium rounded-full">
-                        Paling Populer
-                    </div>
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-yellow-500 text-slate-900 text-sm font-medium rounded-full">Paling Populer</div>
                     <div class="text-center mb-8">
                         <h3 class="text-xl font-semibold mb-2">Pro</h3>
                         <p class="text-red-100 text-sm">Untuk karir profesional</p>
@@ -1006,30 +801,13 @@
                         <span class="text-red-100" id="proPeriod">/bulan</span>
                     </div>
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5"></i>
-                            <span>Akses semua 500+ kursus</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5"></i>
-                            <span>Video quality HD</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5"></i>
-                            <span>Sertifikat resmi</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5"></i>
-                            <span>Download offline</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5"></i>
-                            <span>Konsultasi mentor 1x/minggu</span>
-                        </li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i><span>Akses semua 500+ kursus</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i><span>Akses semua 100+ e-book</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i><span>Video quality HD</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i><span>Sertifikat resmi</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i><span>Download offline</span></li>
                     </ul>
-                    <button onclick="selectPlan('Pro', 'Rp 99.000/bulan')" class="w-full py-4 bg-white text-red-600 rounded-xl font-medium hover:bg-red-50 transition-colors">
-                        Pilih Pro
-                    </button>
+                    <button onclick="selectPlan('Pro', 'Rp 99.000/bulan')" class="w-full py-4 bg-white text-red-600 rounded-xl font-medium hover:bg-red-50 transition-colors">Pilih Pro</button>
                 </div>
                 
                 <!-- Enterprise Plan -->
@@ -1043,30 +821,13 @@
                         <span class="text-slate-500" id="enterprisePeriod">/bulan</span>
                     </div>
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Semua fitur Pro</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Unlimited team members</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Admin dashboard</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Custom learning path</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check" class="w-5 h-5 text-green-500"></i>
-                            <span>Dedicated support 24/7</span>
-                        </li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Semua fitur Pro</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Unlimited team members</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Admin dashboard</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Custom learning path</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-green-500"></i><span>Dedicated support 24/7</span></li>
                     </ul>
-                    <button onclick="selectPlan('Enterprise', 'Rp 299.000/bulan')" class="w-full py-4 border-2 border-slate-200 rounded-xl font-medium hover:border-red-600 hover:text-red-600 transition-colors">
-                        Hubungi Sales
-                    </button>
+                    <button onclick="selectPlan('Enterprise', 'Rp 299.000/bulan')" class="w-full py-4 border-2 border-slate-200 rounded-xl font-medium hover:border-red-600 hover:text-red-600 transition-colors">Hubungi Sales</button>
                 </div>
             </div>
         </div>
@@ -1081,7 +842,6 @@
             </div>
             
             <div class="space-y-4" id="faqContainer">
-                <!-- FAQ Item 1 -->
                 <div class="bg-slate-50 rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
                         <span>Bagaimana cara mendaftar di EduLearn?</span>
@@ -1092,40 +852,26 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 2 -->
+                <div class="bg-slate-50 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
+                        <span>Bagaimana cara membeli e-book?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-5">
+                        <p class="text-slate-600">Anda bisa membeli e-book melalui platform partner kami di Link.id. Klik tombol "Beli di Link.id" pada detail e-book, lalu ikuti proses pembayaran. E-book akan langsung tersedia setelah pembayaran berhasil.</p>
+                    </div>
+                </div>
+                
                 <div class="bg-slate-50 rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
                         <span>Apakah sertifikat dari EduLearn diakui industri?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
                     </button>
                     <div class="accordion-content px-6 pb-5">
-                        <p class="text-slate-600">Ya, sertifikat kami diakui oleh berbagai perusahaan ternama di Indonesia. Kami bekerja sama dengan industri untuk memastikan kurikulum kami sesuai dengan kebutuhan pasar kerja. Sertifikat dapat diverifikasi secara online.</p>
+                        <p class="text-slate-600">Ya, sertifikat kami diakui oleh berbagai perusahaan ternama di Indonesia. Kami bekerja sama dengan industri untuk memastikan kurikulum kami sesuai dengan kebutuhan pasar kerja.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 3 -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
-                        <span>Bagaimana jika saya tidak puas dengan kursusnya?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content px-6 pb-5">
-                        <p class="text-slate-600">Kami memberikan jaminan uang kembali 30 hari tanpa pertanyaan. Jika Anda tidak puas dengan kursus yang dibeli, hubungi tim support kami dan kami akan memproses refund dalam 3-5 hari kerja.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 4 -->
-                <div class="bg-slate-50 rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
-                        <span>Apakah ada batas waktu akses kursus?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content px-6 pb-5">
-                        <p class="text-slate-600">Untuk pembelian kursus individu, Anda mendapat akses seumur hidup termasuk semua update materi. Untuk paket berlangganan, akses aktif selama periode berlangganan.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 5 -->
                 <div class="bg-slate-50 rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
                         <span>Metode pembayaran apa saja yang tersedia?</span>
@@ -1136,14 +882,13 @@
                     </div>
                 </div>
                 
-                <!-- FAQ Item 6 -->
                 <div class="bg-slate-50 rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left font-medium">
-                        <span>Bisakah saya belajar di handphone?</span>
+                        <span>Format e-book apa saja yang tersedia?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
                     </button>
                     <div class="accordion-content px-6 pb-5">
-                        <p class="text-slate-600">Tentu! EduLearn tersedia di web dan aplikasi mobile (iOS & Android). Anda bisa download video untuk ditonton offline, belajar di mana saja dan kapan saja.</p>
+                        <p class="text-slate-600">E-book kami tersedia dalam format PDF dan EPUB. Anda bisa membaca langsung di browser atau mendownload untuk dibaca offline di perangkat favorit Anda.</p>
                     </div>
                 </div>
             </div>
@@ -1162,16 +907,15 @@
                     <i data-lucide="send" class="w-5 h-5"></i>
                 </button>
             </form>
-            <p class="text-red-200 text-sm mt-4">Kami tidak akan mengirim spam. Unsubscribe kapan saja.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
                 <!-- Brand -->
-                <div>
+                <div class="lg:col-span-2">
                     <a href="https://instagram.com/kha.lid" target="_blank" class="flex items-center gap-3 mb-6 group">
                         <img src="https://z-cdn-media.chatglm.cn/files/eb9f482d-a6e6-4d18-b848-5dfa4a6bdc6f.png?auth_key=1879846499-dab2e7f42acb4674916fe76683eb5f10-0-798a7ad4565e36a3a5e1dbe19a0c1c06" alt="DIRAZA RIZQI Logo" class="h-16 w-auto group-hover:scale-105 transition-transform duration-300">
                         <div>
@@ -1185,9 +929,10 @@
                             <i data-lucide="instagram" class="w-5 h-5 group-hover:text-white"></i>
                         </a>
                         <a href="https://tiktok.com/@nextmind" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-black transition-all duration-300 group">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                            </svg>
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        </a>
+                        <a href="https://link.id" target="_blank" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-all duration-300 group">
+                            <i data-lucide="book-open" class="w-5 h-5 group-hover:text-white"></i>
                         </a>
                     </div>
                 </div>
@@ -1197,9 +942,10 @@
                     <h4 class="font-semibold mb-6">Platform</h4>
                     <ul class="space-y-3">
                         <li><a href="#kursus" onclick="openPageModal('semuaKursus')" class="text-slate-400 hover:text-red-500 transition-colors">Semua Kursus</a></li>
+                        <li><a href="#ebook" onclick="openPageModal('ebookKoleksi')" class="text-slate-400 hover:text-red-500 transition-colors">E-Book</a></li>
                         <li><a href="#" onclick="openPageModal('learningPath')" class="text-slate-400 hover:text-red-500 transition-colors">Learning Path</a></li>
                         <li><a href="#" onclick="openPageModal('sertifikat')" class="text-slate-400 hover:text-red-500 transition-colors">Sertifikat</a></li>
-                        <li><a href="#" onclick="openPageModal('edulearnBusiness')" class="text-slate-400 hover:text-red-500 transition-colors">EduLearn for Business</a></li>
+                        <li><a href="https://link.id" target="_blank" class="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-1">Beli E-Book <i data-lucide="external-link" class="w-3 h-3"></i></a></li>
                     </ul>
                 </div>
                 
@@ -1240,9 +986,7 @@
     <div id="loginModal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('loginModal')"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-2xl p-8 modal-enter">
-            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h3 class="text-2xl font-semibold mb-6">Masuk ke EduLearn</h3>
             <form onsubmit="handleLogin(event)">
                 <div class="space-y-4">
@@ -1254,21 +998,10 @@
                         <label class="block text-sm font-medium mb-2">Password</label>
                         <input type="password" id="loginPassword" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
                     </div>
-                    <div class="flex items-center justify-between">
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" class="rounded border-slate-300 text-red-600 focus:ring-red-500">
-                            <span class="text-sm text-slate-600">Ingat saya</span>
-                        </label>
-                        <a href="#" onclick="forgotPassword()" class="text-sm text-red-600 hover:underline">Lupa password?</a>
-                    </div>
-                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                        Masuk
-                    </button>
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">Masuk</button>
                 </div>
             </form>
-            <p class="text-center text-slate-600 mt-6">
-                Belum punya akun? <a href="#" onclick="switchToRegister()" class="text-red-600 hover:underline font-medium">Daftar sekarang</a>
-            </p>
+            <p class="text-center text-slate-600 mt-6">Belum punya akun? <a href="#" onclick="switchToRegister()" class="text-red-600 hover:underline font-medium">Daftar sekarang</a></p>
         </div>
     </div>
 
@@ -1276,9 +1009,7 @@
     <div id="registerModal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('registerModal')"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-2xl p-8 modal-enter max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h3 class="text-2xl font-semibold mb-6">Daftar di EduLearn</h3>
             <form onsubmit="handleRegister(event)">
                 <div class="space-y-4">
@@ -1293,22 +1024,20 @@
                     <div>
                         <label class="block text-sm font-medium mb-2">Password</label>
                         <input type="password" id="registerPassword" required minlength="8" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
-                        <p class="text-xs text-slate-500 mt-1">Minimal 8 karakter</p>
                     </div>
-                    <div>
-                        <label class="flex items-start gap-2">
-                            <input type="checkbox" required class="rounded border-slate-300 text-red-600 focus:ring-red-500 mt-1">
-                            <span class="text-sm text-slate-600">Saya setuju dengan <a href="#" onclick="openPageModal('syaratKetentuan')" class="text-red-600 hover:underline">Syarat & Ketentuan</a> dan <a href="#" onclick="openPageModal('kebijakanPrivasi')" class="text-red-600 hover:underline">Kebijakan Privasi</a></span>
-                        </label>
-                    </div>
-                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                        Daftar Gratis
-                    </button>
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">Daftar Gratis</button>
                 </div>
             </form>
-            <p class="text-center text-slate-600 mt-6">
-                Sudah punya akun? <a href="#" onclick="switchToLogin()" class="text-red-600 hover:underline font-medium">Masuk</a>
-            </p>
+            <p class="text-center text-slate-600 mt-6">Sudah punya akun? <a href="#" onclick="switchToLogin()" class="text-red-600 hover:underline font-medium">Masuk</a></p>
+        </div>
+    </div>
+
+    <!-- E-Book Detail Modal -->
+    <div id="ebookModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('ebookModal')"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-2xl modal-enter max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('ebookModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 z-10"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <div id="ebookModalContent"></div>
         </div>
     </div>
 
@@ -1318,13 +1047,9 @@
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-2xl modal-enter max-h-[85vh] overflow-hidden flex flex-col">
             <div class="p-6 border-b border-slate-100 flex items-center justify-between">
                 <h3 class="text-2xl font-semibold" id="pageTitle">Judul Halaman</h3>
-                <button onclick="closeModal('pageModal')" class="text-slate-400 hover:text-slate-600">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
+                <button onclick="closeModal('pageModal')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
-            <div class="page-modal-content p-6" id="pageContent">
-                <!-- Content will be loaded here -->
-            </div>
+            <div class="page-modal-content p-6" id="pageContent"></div>
         </div>
     </div>
 
@@ -1332,14 +1057,10 @@
     <div id="successModal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('successModal')"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm bg-white rounded-2xl p-8 modal-enter text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
-            </div>
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"><i data-lucide="check" class="w-8 h-8 text-green-600"></i></div>
             <h3 class="text-xl font-semibold mb-2" id="successTitle">Berhasil!</h3>
             <p class="text-slate-600 mb-6" id="successMessage">Aksi berhasil dilakukan.</p>
-            <button onclick="closeModal('successModal')" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                Tutup
-            </button>
+            <button onclick="closeModal('successModal')" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">Tutup</button>
         </div>
     </div>
 
@@ -1352,39 +1073,229 @@
     </div>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // ===== PAGE CONTENT DATA =====
+        // E-Book Data
+        const ebooks = [
+            {
+                title: "Panduan Lengkap Menjadi Web Developer Profesional",
+                author: "Budi Santoso",
+                category: "Programming",
+                pages: 450,
+                price: 89000,
+                originalPrice: 199000,
+                rating: 4.9,
+                reviews: 3245,
+                description: "Pelajari fundamental hingga advanced web development dengan project nyata. Buku ini mencakup HTML, CSS, JavaScript, React, Node.js, dan best practices industri.",
+                chapters: ["Pengenalan Web Development", "HTML & CSS Fundamentals", "JavaScript Mastery", "React Framework", "Node.js Backend", "Database Integration", "Deployment & DevOps", "Portfolio Building"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/web-developer-ebook"
+            },
+            {
+                title: "UI/UX Design: Dasar Hingga Mahir",
+                author: "Sarah Wijaya",
+                category: "Design",
+                pages: 320,
+                price: 79000,
+                originalPrice: 179000,
+                rating: 4.8,
+                reviews: 2156,
+                description: "Kuasai design thinking dan tools modern untuk menciptakan UX yang luar biasa. Pelajari Figma, Adobe XD, dan Design System.",
+                chapters: ["Design Thinking", "User Research", "Wireframing", "Prototyping", "Visual Design", "Design System", "Usability Testing", "Portfolio"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/ui-ux-design-ebook"
+            },
+            {
+                title: "Data Science dengan Python: Panduan Praktis",
+                author: "Dr. Rini Kusuma",
+                category: "Data Science",
+                pages: 520,
+                price: 99000,
+                originalPrice: 249000,
+                rating: 4.9,
+                reviews: 1890,
+                description: "Dari analisis data hingga machine learning dengan Python dan library populer seperti Pandas, NumPy, Scikit-learn, dan TensorFlow.",
+                chapters: ["Python Fundamentals", "Data Analysis dengan Pandas", "NumPy & Scientific Computing", "Data Visualization", "Machine Learning Basics", "Deep Learning", "NLP", "Projects"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/data-science-python"
+            },
+            {
+                title: "Strategi Digital Marketing untuk Bisnis",
+                author: "Andi Pratama",
+                category: "Marketing",
+                pages: 280,
+                price: 69000,
+                originalPrice: 149000,
+                rating: 4.5,
+                reviews: 1456,
+                description: "Pelajari strategi pemasaran digital yang efektif untuk mengembangkan bisnis. Mencakup SEO, SEM, Social Media Marketing, dan Email Marketing.",
+                chapters: ["Digital Marketing Overview", "SEO Mastery", "SEM & Google Ads", "Social Media Marketing", "Content Marketing", "Email Marketing", "Analytics", "Campaign Planning"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/digital-marketing-ebook"
+            },
+            {
+                title: "Membangun Startup dari Nol",
+                author: "Kevin Halim",
+                category: "Business",
+                pages: 350,
+                price: 79000,
+                originalPrice: 179000,
+                rating: 4.9,
+                reviews: 2789,
+                description: "Panduan lengkap membangun startup sukses dari ide hingga mendapat funding. Termasuk business model canvas, pitch deck, dan fundraising.",
+                chapters: ["Ideation", "Market Research", "Business Model", "MVP Development", "Team Building", "Funding & Pitching", "Growth Hacking", "Case Studies"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/startup-ebook"
+            },
+            {
+                title: "Cybersecurity & Ethical Hacking",
+                author: "Randi Firmansyah",
+                category: "Programming",
+                pages: 420,
+                price: 89000,
+                originalPrice: 199000,
+                rating: 4.6,
+                reviews: 987,
+                description: "Pelajari keamanan siber dan ethical hacking untuk melindungi sistem digital. Mencakup penetration testing, vulnerability assessment, dan security best practices.",
+                chapters: ["Security Fundamentals", "Network Security", "Web Application Security", "Penetration Testing", "Malware Analysis", "Incident Response", "Security Tools", "Certification Prep"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/cybersecurity-ebook"
+            },
+            {
+                title: "Membangun Aplikasi Mobile Cross-Platform",
+                author: "Dimas Prayoga",
+                category: "Programming",
+                pages: 380,
+                price: 85000,
+                originalPrice: 189000,
+                rating: 4.8,
+                reviews: 1567,
+                description: "Kuasai Flutter dan React Native untuk membuat aplikasi iOS & Android dengan satu codebase. Termasuk project nyata dan deployment.",
+                chapters: ["Mobile Development Overview", "Flutter Fundamentals", "React Native Basics", "State Management", "API Integration", "Local Storage", "Deployment", "App Store Optimization"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/mobile-dev-ebook"
+            },
+            {
+                title: "Database Design & SQL Mastery",
+                author: "Hendra Wijaya",
+                category: "Data Science",
+                pages: 290,
+                price: 65000,
+                originalPrice: 149000,
+                rating: 4.5,
+                reviews: 1234,
+                description: "Pelajari SQL dan desain database dari dasar hingga optimasi performa. Mencakup MySQL, PostgreSQL, dan MongoDB.",
+                chapters: ["Database Fundamentals", "SQL Basics", "Advanced SQL", "Database Design", "Normalization", "Indexing & Performance", "NoSQL & MongoDB", "Real-world Projects"],
+                format: ["PDF", "EPUB"],
+                linkId: "https://link.id/database-sql-ebook"
+            }
+        ];
+
+        // E-Book Functions
+        function openEbookDetail(index) {
+            const ebook = ebooks[index];
+            const modalContent = document.getElementById('ebookModalContent');
+            
+            modalContent.innerHTML = `
+                <div class="relative">
+                    <div class="ebook-cover h-48 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="book" class="w-16 h-16 mx-auto mb-2 opacity-80"></i>
+                            <h4 class="font-bold text-xl">${ebook.title}</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded">${ebook.category}</span>
+                            <span class="text-xs text-slate-500">${ebook.pages} Halaman</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">${ebook.title}</h3>
+                        <p class="text-slate-500 mb-4">Oleh ${ebook.author}</p>
+                        
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-1">
+                                <div class="flex items-center text-yellow-500">
+                                    ${Array(5).fill().map((_, i) => `<i data-lucide="star" class="w-4 h-4 ${i < Math.floor(ebook.rating) ? 'fill-current' : ''}"></i>`).join('')}
+                                </div>
+                                <span class="text-sm font-medium ml-1">${ebook.rating}</span>
+                            </div>
+                            <span class="text-sm text-slate-500">(${ebook.reviews.toLocaleString()} ulasan)</span>
+                        </div>
+                        
+                        <p class="text-slate-600 mb-6">${ebook.description}</p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3">Daftar Isi:</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                ${ebook.chapters.map((ch, i) => `<div class="flex items-center gap-2 text-sm text-slate-600"><span class="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center text-xs">${i+1}</span>${ch}</div>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-slate-500">Format:</span>
+                                ${ebook.format.map(f => `<span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded">${f}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-3xl font-bold text-red-600">Rp ${ebook.price.toLocaleString()}</span>
+                                <span class="text-slate-400 line-through ml-2">Rp ${ebook.originalPrice.toLocaleString()}</span>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-600 text-sm font-medium rounded">Hemat ${Math.round((1 - ebook.price/ebook.originalPrice) * 100)}%</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="${ebook.linkId}" target="_blank" class="flex-1 bg-gradient-to-r from-red-600 to-orange-500 text-white py-3 rounded-xl font-medium hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                                Beli di Link.id
+                            </a>
+                            <button onclick="addToWishlist('${ebook.title}')" class="w-12 h-12 border-2 border-slate-200 rounded-xl flex items-center justify-center hover:border-red-600 hover:text-red-600 transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            openModal('ebookModal');
+        }
+
+        function addToWishlist(title) {
+            showToast(`"${title}" ditambahkan ke wishlist`, 'success');
+        }
+
+        // Page Contents
         const pageContents = {
             semuaKursus: {
                 title: 'Semua Kursus',
                 content: `
                     <div class="space-y-4">
-                        <p class="text-slate-600 mb-6">Jelajahi lebih dari 500+ kursus berkualitas dari berbagai kategori untuk mengembangkan skill Anda.</p>
+                        <p class="text-slate-600 mb-6">Jelajahi lebih dari 500+ kursus berkualitas dari berbagai kategori.</p>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-slate-50 p-4 rounded-xl">
-                                <div class="text-2xl font-bold text-red-600">500+</div>
-                                <div class="text-sm text-slate-500">Total Kursus</div>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-xl">
-                                <div class="text-2xl font-bold text-red-600">50+</div>
-                                <div class="text-sm text-slate-500">Kategori</div>
-                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl"><div class="text-2xl font-bold text-red-600">500+</div><div class="text-sm text-slate-500">Total Kursus</div></div>
+                            <div class="bg-slate-50 p-4 rounded-xl"><div class="text-2xl font-bold text-red-600">50+</div><div class="text-sm text-slate-500">Kategori</div></div>
                         </div>
-                        <div class="mt-6">
-                            <h4 class="font-semibold mb-3">Kategori Populer:</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Programming</span>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm">Design</span>
-                                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">Business</span>
-                                <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-sm">Marketing</span>
-                                <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm">Data Science</span>
-                            </div>
+                        <a href="#kursus" onclick="closeModal('pageModal')" class="inline-flex items-center gap-2 text-red-600 font-medium mt-4 hover:underline">Lihat Semua Kursus <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                `
+            },
+            ebookKoleksi: {
+                title: 'Koleksi E-Book',
+                content: `
+                    <div class="space-y-4">
+                        <p class="text-slate-600 mb-6">Temukan berbagai ebook berkualitas untuk menunjang pembelajaran Anda.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl"><div class="text-2xl font-bold text-red-600">100+</div><div class="text-sm text-slate-500">E-Book Tersedia</div></div>
+                            <div class="bg-slate-50 p-4 rounded-xl"><div class="text-2xl font-bold text-red-600">PDF & EPUB</div><div class="text-sm text-slate-500">Format</div></div>
                         </div>
-                        <a href="#kursus" onclick="closeModal('pageModal')" class="inline-flex items-center gap-2 text-red-600 font-medium mt-4 hover:underline">
-                            Lihat Semua Kursus <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
+                        <div class="mt-4">
+                            <a href="https://link.id" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 py-3 rounded-xl font-medium hover:-translate-y-1 transition-all duration-300">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                Kunjungi Link.id
+                            </a>
+                        </div>
                     </div>
                 `
             },
@@ -1392,39 +1303,24 @@
                 title: 'Learning Path',
                 content: `
                     <div class="space-y-6">
-                        <p class="text-slate-600">Pilih jalur belajar yang sesuai dengan tujuan karir Anda. Kami menyediakan panduan terstruktur untuk mencapai impian Anda.</p>
+                        <p class="text-slate-600">Pilih jalur belajar yang sesuai dengan tujuan karir Anda.</p>
                         <div class="space-y-4">
                             <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <i data-lucide="code" class="w-5 h-5 text-blue-600"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Full-Stack Developer</h4>
-                                        <p class="text-sm text-slate-500">6 bulan • 12 kursus</p>
-                                    </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center"><i data-lucide="code" class="w-5 h-5 text-blue-600"></i></div>
+                                    <div><h4 class="font-semibold">Full-Stack Developer</h4><p class="text-sm text-slate-500">6 bulan • 12 kursus</p></div>
                                 </div>
                             </div>
                             <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                        <i data-lucide="palette" class="w-5 h-5 text-purple-600"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">UI/UX Designer</h4>
-                                        <p class="text-sm text-slate-500">4 bulan • 8 kursus</p>
-                                    </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center"><i data-lucide="palette" class="w-5 h-5 text-purple-600"></i></div>
+                                    <div><h4 class="font-semibold">UI/UX Designer</h4><p class="text-sm text-slate-500">4 bulan • 8 kursus</p></div>
                                 </div>
                             </div>
                             <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                                        <i data-lucide="bar-chart-2" class="w-5 h-5 text-orange-600"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold">Data Scientist</h4>
-                                        <p class="text-sm text-slate-500">8 bulan • 15 kursus</p>
-                                    </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center"><i data-lucide="bar-chart-2" class="w-5 h-5 text-orange-600"></i></div>
+                                    <div><h4 class="font-semibold">Data Scientist</h4><p class="text-sm text-slate-500">8 bulan • 15 kursus</p></div>
                                 </div>
                             </div>
                         </div>
@@ -1433,303 +1329,45 @@
             },
             sertifikat: {
                 title: 'Sertifikat',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Dapatkan sertifikat resmi yang diakui industri setelah menyelesaikan kursus. Sertifikat kami dapat diverifikasi secara online.</p>
-                        <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6 border border-red-100">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-16 h-16 bg-red-600 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="award" class="w-8 h-8 text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-lg">Sertifikat EduLearn</h4>
-                                    <p class="text-sm text-slate-500">Diakui oleh 500+ perusahaan</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-semibold">Keunggulan Sertifikat Kami:</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
-                                    Verifikasi online dengan QR Code
-                                </li>
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
-                                    Diakui industri & perusahaan ternama
-                                </li>
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
-                                    Dapat ditambahkan ke LinkedIn
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                `
-            },
-            edulearnBusiness: {
-                title: 'EduLearn for Business',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Tingkatkan kompetensi tim Anda dengan solusi pembelajaran enterprise yang terintegrasi.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-slate-50 p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-red-600">1000+</div>
-                                <div class="text-sm text-slate-500">Perusahaan</div>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-red-600">50K+</div>
-                                <div class="text-sm text-slate-500">Karyawan Terlatih</div>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-semibold">Fitur Enterprise:</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check" class="w-5 h-5 text-red-600"></i>
-                                    Dashboard admin untuk manajemen tim
-                                </li>
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check" class="w-5 h-5 text-red-600"></i>
-                                    Custom learning path sesuai kebutuhan
-                                </li>
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check" class="w-5 h-5 text-red-600"></i>
-                                    Laporan progress real-time
-                                </li>
-                                <li class="flex items-center gap-2 text-slate-600">
-                                    <i data-lucide="check" class="w-5 h-5 text-red-600"></i>
-                                    Dedicated account manager
-                                </li>
-                            </ul>
-                        </div>
-                        <button onclick="selectPlan('Enterprise', 'Custom')" class="w-full bg-red-600 text-white py-3 rounded-xl font-medium hover:bg-red-700 transition-colors">
-                            Hubungi Sales Team
-                        </button>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">Dapatkan sertifikat resmi yang diakui industri.</p><div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6 border border-red-100"><div class="flex items-center gap-4"><div class="w-16 h-16 bg-red-600 rounded-xl flex items-center justify-center"><i data-lucide="award" class="w-8 h-8 text-white"></i></div><div><h4 class="font-semibold text-lg">Sertifikat EduLearn</h4><p class="text-sm text-slate-500">Diakui oleh 500+ perusahaan</p></div></div></div></div>`
             },
             tentangKami: {
                 title: 'Tentang Kami',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">DIRAZA RIZQI adalah platform pembelajaran online terkemuka di Indonesia yang berkomitmen untuk memberikan akses pendidikan berkualitas untuk semua orang.</p>
-                        <div class="bg-red-50 rounded-xl p-6">
-                            <h4 class="font-semibold mb-2 text-red-600">Misi Kami</h4>
-                            <p class="text-slate-600 text-sm">Memberikan akses pendidikan berkualitas tinggi kepada semua orang, di mana saja dan kapan saja.</p>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 text-center">
-                            <div>
-                                <div class="text-2xl font-bold text-red-600">2020</div>
-                                <div class="text-xs text-slate-500">Tahun Berdiri</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-red-600">50K+</div>
-                                <div class="text-xs text-slate-500">Pengguna</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-red-600">500+</div>
-                                <div class="text-xs text-slate-500">Instruktur</div>
-                            </div>
-                        </div>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">DIRAZA RIZQI adalah platform pembelajaran online terkemuka di Indonesia.</p><div class="grid grid-cols-3 gap-4 text-center"><div><div class="text-2xl font-bold text-red-600">2020</div><div class="text-xs text-slate-500">Tahun Berdiri</div></div><div><div class="text-2xl font-bold text-red-600">50K+</div><div class="text-xs text-slate-500">Pengguna</div></div><div><div class="text-2xl font-bold text-red-600">500+</div><div class="text-xs text-slate-500">Instruktur</div></div></div></div>`
             },
             karir: {
                 title: 'Karir',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Bergabunglah dengan tim kami dan wujudkan visi untuk membuat pendidikan berkualitas dapat diakses oleh semua orang.</p>
-                        <div class="space-y-4">
-                            <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors cursor-pointer">
-                                <h4 class="font-semibold">Frontend Developer</h4>
-                                <p class="text-sm text-slate-500">Jakarta • Full-time</p>
-                            </div>
-                            <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors cursor-pointer">
-                                <h4 class="font-semibold">UX Designer</h4>
-                                <p class="text-sm text-slate-500">Remote • Full-time</p>
-                            </div>
-                            <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors cursor-pointer">
-                                <h4 class="font-semibold">Content Writer</h4>
-                                <p class="text-sm text-slate-500">Jakarta • Part-time</p>
-                            </div>
-                            <div class="border border-slate-200 rounded-xl p-4 hover:border-red-300 transition-colors cursor-pointer">
-                                <h4 class="font-semibold">Marketing Manager</h4>
-                                <p class="text-sm text-slate-500">Jakarta • Full-time</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-slate-500 text-center">Kirim CV ke: career@dirazarizqi.com</p>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">Bergabunglah dengan tim kami.</p><div class="space-y-4"><div class="border border-slate-200 rounded-xl p-4"><h4 class="font-semibold">Frontend Developer</h4><p class="text-sm text-slate-500">Jakarta • Full-time</p></div><div class="border border-slate-200 rounded-xl p-4"><h4 class="font-semibold">UX Designer</h4><p class="text-sm text-slate-500">Remote • Full-time</p></div></div><p class="text-sm text-slate-500 text-center">Kirim CV ke: career@dirazarizqi.com</p></div>`
             },
             blog: {
                 title: 'Blog',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Baca artikel terbaru seputar teknologi, karir, dan tips belajar dari para ahli.</p>
-                        <div class="space-y-4">
-                            <div class="flex gap-4 items-start cursor-pointer group">
-                                <img src="https://picsum.photos/seed/blog1/100/80.jpg" class="w-24 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h4 class="font-medium group-hover:text-red-600 transition-colors">Tips Sukses Belajar Programming di 2024</h4>
-                                    <p class="text-sm text-slate-500">5 min read</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start cursor-pointer group">
-                                <img src="https://picsum.photos/seed/blog2/100/80.jpg" class="w-24 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h4 class="font-medium group-hover:text-red-600 transition-colors">Mengapa UI/UX Designer Sangat Dibutuhkan?</h4>
-                                    <p class="text-sm text-slate-500">7 min read</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4 items-start cursor-pointer group">
-                                <img src="https://picsum.photos/seed/blog3/100/80.jpg" class="w-24 h-20 rounded-lg object-cover">
-                                <div>
-                                    <h4 class="font-medium group-hover:text-red-600 transition-colors">Data Science: Karir Masa Depan</h4>
-                                    <p class="text-sm text-slate-500">6 min read</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">Baca artikel terbaru seputar teknologi dan karir.</p><div class="space-y-4"><div class="flex gap-4 items-start group"><img src="https://picsum.photos/seed/blog1/100/80.jpg" class="w-24 h-20 rounded-lg object-cover"><div><h4 class="font-medium group-hover:text-red-600 transition-colors">Tips Sukses Belajar Programming</h4><p class="text-sm text-slate-500">5 min read</p></div></div></div></div>`
             },
             press: {
                 title: 'Press',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">DIRAZA RIZQI dalam media dan berita.</p>
-                        <div class="space-y-4">
-                            <div class="border-l-4 border-red-600 pl-4 py-2">
-                                <h4 class="font-semibold">Kompas Tekno</h4>
-                                <p class="text-sm text-slate-600">"Platform EduLearn Raih Pendanaan Seri A"</p>
-                                <p class="text-xs text-slate-400">Januari 2024</p>
-                            </div>
-                            <div class="border-l-4 border-red-600 pl-4 py-2">
-                                <h4 class="font-semibold">Tech in Asia</h4>
-                                <p class="text-sm text-slate-600">"Startup EdTech Indonesia yang Patut Diperhatikan"</p>
-                                <p class="text-xs text-slate-400">Desember 2023</p>
-                            </div>
-                            <div class="border-l-4 border-red-600 pl-4 py-2">
-                                <h4 class="font-semibold">DailySocial</h4>
-                                <p class="text-sm text-slate-600">"EduLearn Luncurkan Fitur AI Learning Assistant"</p>
-                                <p class="text-xs text-slate-400">November 2023</p>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 rounded-xl p-4">
-                            <p class="text-sm text-slate-600"><strong>Media Contact:</strong> press@dirazarizqi.com</p>
-                        </div>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">DIRAZA RIZQI dalam media dan berita.</p><div class="border-l-4 border-red-600 pl-4 py-2"><h4 class="font-semibold">Kompas Tekno</h4><p class="text-sm text-slate-600">"Platform EduLearn Raih Pendanaan Seri A"</p></div></div>`
             },
             helpCenter: {
                 title: 'Help Center',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Butuh bantuan? Kami siap membantu Anda.</p>
-                        <div class="relative">
-                            <input type="text" placeholder="Cari pertanyaan..." class="w-full px-4 py-3 pl-10 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500">
-                            <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-semibold">Pertanyaan Populer:</h4>
-                            <div class="bg-slate-50 p-3 rounded-lg cursor-pointer hover:bg-slate-100">
-                                <p class="text-sm font-medium">Bagaimana cara reset password?</p>
-                            </div>
-                            <div class="bg-slate-50 p-3 rounded-lg cursor-pointer hover:bg-slate-100">
-                                <p class="text-sm font-medium">Bagaimana cara mendapatkan sertifikat?</p>
-                            </div>
-                            <div class="bg-slate-50 p-3 rounded-lg cursor-pointer hover:bg-slate-100">
-                                <p class="text-sm font-medium">Metode pembayaran apa saja?</p>
-                            </div>
-                            <div class="bg-slate-50 p-3 rounded-lg cursor-pointer hover:bg-slate-100">
-                                <p class="text-sm font-medium">Bagaimana cara menghubungi instruktur?</p>
-                            </div>
-                        </div>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">Butuh bantuan? Kami siap membantu Anda.</p><div class="relative"><input type="text" placeholder="Cari pertanyaan..." class="w-full px-4 py-3 pl-10 border border-slate-200 rounded-xl"><i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i></div></div>`
             },
             kontak: {
                 title: 'Kontak',
-                content: `
-                    <div class="space-y-6">
-                        <p class="text-slate-600">Hubungi kami untuk pertanyaan, saran, atau kerjasama.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="mail" class="w-6 h-6 text-red-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Email</p>
-                                    <p class="text-sm text-slate-500">support@dirazarizqi.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="phone" class="w-6 h-6 text-red-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Telepon</p>
-                                    <p class="text-sm text-slate-500">+62 21 1234 5678</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="map-pin" class="w-6 h-6 text-red-600"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Alamat</p>
-                                    <p class="text-sm text-slate-500">Jakarta, Indonesia</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 rounded-xl p-4">
-                            <p class="text-sm text-slate-600"><strong>Jam Operasional:</strong><br>Senin - Jumat: 09:00 - 18:00 WIB</p>
-                        </div>
-                    </div>
-                `
+                content: `<div class="space-y-6"><p class="text-slate-600">Hubungi kami.</p><div class="space-y-4"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center"><i data-lucide="mail" class="w-6 h-6 text-red-600"></i></div><div><p class="font-medium">Email</p><p class="text-sm text-slate-500">support@dirazarizqi.com</p></div></div></div></div>`
             },
             kebijakanPrivasi: {
                 title: 'Kebijakan Privasi',
-                content: `
-                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
-                        <p>Terakhir diperbarui: Januari 2024</p>
-                        <p>Kebijakan Privasi ini menjelaskan bagaimana DIRAZA RIZQI mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.</p>
-                        <h4 class="font-semibold text-slate-800">1. Informasi yang Kami Kumpulkan</h4>
-                        <p>Kami mengumpulkan informasi yang Anda berikan secara langsung, seperti nama, email, dan informasi pembayaran.</p>
-                        <h4 class="font-semibold text-slate-800">2. Penggunaan Informasi</h4>
-                        <p>Informasi digunakan untuk menyediakan layanan, meningkatkan pengalaman pengguna, dan komunikasi.</p>
-                        <h4 class="font-semibold text-slate-800">3. Keamanan Data</h4>
-                        <p>Kami menerapkan langkah-langkah keamanan yang sesuai untuk melindungi informasi pribadi Anda.</p>
-                        <h4 class="font-semibold text-slate-800">4. Hak Pengguna</h4>
-                        <p>Anda berhak mengakses, memperbaiki, atau menghapus data pribadi Anda.</p>
-                    </div>
-                `
+                content: `<div class="space-y-4 text-slate-600 text-sm"><p>Terakhir diperbarui: Januari 2024</p><p>Kebijakan Privasi ini menjelaskan bagaimana DIRAZA RIZQI mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.</p></div>`
             },
             syaratKetentuan: {
                 title: 'Syarat & Ketentuan',
-                content: `
-                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
-                        <p>Terakhir diperbarui: Januari 2024</p>
-                        <p>Dengan menggunakan platform DIRAZA RIZQI, Anda menyetujui syarat dan ketentuan berikut:</p>
-                        <h4 class="font-semibold text-slate-800">1. Penggunaan Layanan</h4>
-                        <p>Layanan hanya untuk penggunaan pribadi dan non-komersial kecuali ada izin tertulis.</p>
-                        <h4 class="font-semibold text-slate-800">2. Akun Pengguna</h4>
-                        <p>Anda bertanggung jawab untuk menjaga kerahasiaan akun dan password Anda.</p>
-                        <h4 class="font-semibold text-slate-800">3. Konten</h4>
-                        <p>Semua konten kursus adalah milik DIRAZA RIZQI dan dilindungi hak cipta.</p>
-                        <h4 class="font-semibold text-slate-800">4. Pembayaran & Refund</h4>
-                        <p>Pembayaran bersifat final. Refund tersedia dalam 30 hari dengan syarat tertentu.</p>
-                        <h4 class="font-semibold text-slate-800">5. Perubahan Layanan</h4>
-                        <p>Kami berhak mengubah atau menghentikan layanan kapan saja dengan pemberitahuan sebelumnya.</p>
-                    </div>
-                `
+                content: `<div class="space-y-4 text-slate-600 text-sm"><p>Terakhir diperbarui: Januari 2024</p><p>Dengan menggunakan platform DIRAZA RIZQI, Anda menyetujui syarat dan ketentuan berikut.</p></div>`
             }
         };
 
-        // ===== NAVIGATION FUNCTIONS =====
+        // Navigation Functions
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
         function closeMobileMenu() {
@@ -1739,20 +1377,12 @@
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             const scrollProgress = document.getElementById('scrollProgress');
-            
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
-            } else {
-                navbar.classList.remove('shadow-lg');
-            }
-            
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrollTop / docHeight) * 100;
-            scrollProgress.style.width = progress + '%';
+            if (window.scrollY > 50) navbar.classList.add('shadow-lg');
+            else navbar.classList.remove('shadow-lg');
+            scrollProgress.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
         });
 
-        // ===== MODAL FUNCTIONS =====
+        // Modal Functions
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -1785,26 +1415,20 @@
             setTimeout(() => openModal('loginModal'), 100);
         }
 
-        // ===== AUTH FUNCTIONS =====
+        // Auth Functions
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
             closeModal('loginModal');
-            showSuccess('Login Berhasil!', `Selamat datang kembali, ${email}!`);
+            showSuccess('Login Berhasil!', 'Selamat datang kembali!');
         }
 
         function handleRegister(e) {
             e.preventDefault();
-            const name = document.getElementById('registerName').value;
             closeModal('registerModal');
-            showSuccess('Registrasi Berhasil!', `Akun untuk ${name} telah dibuat. Silakan cek email untuk verifikasi.`);
+            showSuccess('Registrasi Berhasil!', 'Akun telah dibuat. Silakan cek email untuk verifikasi.');
         }
 
-        function forgotPassword() {
-            showToast('Link reset password telah dikirim ke email Anda', 'info');
-        }
-
-        // ===== COURSE FUNCTIONS =====
+        // Course Functions
         function filterCourses(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('bg-red-600', 'text-white');
@@ -1812,16 +1436,9 @@
             });
             event.target.classList.remove('bg-white', 'text-slate-600');
             event.target.classList.add('bg-red-600', 'text-white');
-            
             document.querySelectorAll('.course-card').forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeInUp 0.5s ease-out';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
             });
-            
             showToast(`Menampilkan kursus ${category === 'all' ? 'semua kategori' : category}`, 'info');
         }
 
@@ -1829,97 +1446,54 @@
             const icon = btn.querySelector('i');
             icon.classList.toggle('text-red-600');
             icon.classList.toggle('fill-current');
-            icon.classList.toggle('text-slate-400');
-            
-            if (icon.classList.contains('text-red-600')) {
-                showToast('Ditambahkan ke wishlist', 'success');
-            } else {
-                showToast('Dihapus dari wishlist', 'info');
-            }
+            showToast(icon.classList.contains('text-red-600') ? 'Ditambahkan ke wishlist' : 'Dihapus dari wishlist', 'success');
         }
 
-        function enrollCourse(courseName) {
-            showSuccess('Enrollment Berhasil!', `Anda terdaftar di kursus "${courseName}". Selamat belajar!`);
+        function enrollCourse(name) {
+            showSuccess('Enrollment Berhasil!', `Anda terdaftar di kursus "${name}". Selamat belajar!`);
         }
 
         function loadMoreCourses() {
             const btn = document.getElementById('loadMoreBtn');
             btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> <span>Memuat...</span>';
             lucide.createIcons();
-            
             setTimeout(() => {
                 btn.innerHTML = '<span>Semua kursus telah ditampilkan</span>';
                 btn.disabled = true;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
-                showToast('Semua kursus telah ditampilkan', 'info');
             }, 1500);
         }
 
-        // ===== TESTIMONIAL CAROUSEL =====
-        let currentSlide = 0;
-        const totalSlides = 5;
-
-        function moveCarousel(direction) {
-            const track = document.getElementById('testimonialTrack');
-            const slideWidth = window.innerWidth >= 1024 ? 33.333 : window.innerWidth >= 768 ? 50 : 100;
-            
-            currentSlide += direction;
-            
-            if (currentSlide < 0) currentSlide = totalSlides - Math.floor(100 / slideWidth);
-            if (currentSlide >= totalSlides - Math.floor(100 / slideWidth) + 1) currentSlide = 0;
-            
-            track.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
-        }
-
-        // ===== PRICING FUNCTIONS =====
+        // Pricing Functions
         let isYearly = false;
-
         function toggleBilling() {
             isYearly = !isYearly;
-            const circle = document.getElementById('billingToggleCircle');
-            const proPrice = document.getElementById('proPrice');
-            const enterprisePrice = document.getElementById('enterprisePrice');
-            const proPeriod = document.getElementById('proPeriod');
-            const enterprisePeriod = document.getElementById('enterprisePeriod');
-            
-            if (isYearly) {
-                circle.style.transform = 'translateX(32px)';
-                proPrice.textContent = 'Rp 79.000';
-                enterprisePrice.textContent = 'Rp 239.000';
-                proPeriod.textContent = '/bulan (ditagih tahunan)';
-                enterprisePeriod.textContent = '/bulan (ditagih tahunan)';
-            } else {
-                circle.style.transform = 'translateX(0)';
-                proPrice.textContent = 'Rp 99.000';
-                enterprisePrice.textContent = 'Rp 299.000';
-                proPeriod.textContent = '/bulan';
-                enterprisePeriod.textContent = '/bulan';
-            }
+            document.getElementById('billingToggleCircle').style.transform = isYearly ? 'translateX(32px)' : 'translateX(0)';
+            document.getElementById('proPrice').textContent = isYearly ? 'Rp 79.000' : 'Rp 99.000';
+            document.getElementById('enterprisePrice').textContent = isYearly ? 'Rp 239.000' : 'Rp 299.000';
         }
 
         function selectPlan(plan, price) {
             closeModal('pageModal');
-            showSuccess('Plan Dipilih!', `Anda memilih plan ${plan} (${price}). Tim kami akan menghubungi Anda.`);
+            showSuccess('Plan Dipilih!', `Anda memilih plan ${plan}.`);
         }
 
-        // ===== FAQ FUNCTIONS =====
+        // FAQ Functions
         function toggleFaq(btn) {
             const content = btn.nextElementSibling;
             const icon = btn.querySelector('i');
-            
             content.classList.toggle('open');
             icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : '';
         }
 
-        // ===== NEWSLETTER FUNCTION =====
+        // Newsletter Function
         function subscribeNewsletter(e) {
             e.preventDefault();
-            const email = document.getElementById('newsletterEmail').value;
-            showSuccess('Subscribe Berhasil!', `Terima kasih! Promo dan tips karir akan dikirim ke ${email}`);
+            showSuccess('Subscribe Berhasil!', 'Terima kasih telah berlangganan newsletter kami.');
             document.getElementById('newsletterEmail').value = '';
         }
 
-        // ===== UTILITY FUNCTIONS =====
+        // Utility Functions
         function showSuccess(title, message) {
             document.getElementById('successTitle').textContent = title;
             document.getElementById('successMessage').textContent = message;
@@ -1928,26 +1502,12 @@
 
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-            
-            toastMessage.textContent = message;
-            
-            if (type === 'success') {
-                toastIcon.setAttribute('data-lucide', 'check-circle');
-                toastIcon.className = 'w-5 h-5 text-green-400';
-            } else {
-                toastIcon.setAttribute('data-lucide', 'info');
-                toastIcon.className = 'w-5 h-5 text-blue-400';
-            }
-            
+            document.getElementById('toastMessage').textContent = message;
+            document.getElementById('toastIcon').setAttribute('data-lucide', type === 'success' ? 'check-circle' : 'info');
+            document.getElementById('toastIcon').className = `w-5 h-5 ${type === 'success' ? 'text-green-400' : 'text-blue-400'}`;
             lucide.createIcons();
-            
             toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.querySelector('div').classList.remove('translate-y-20', 'opacity-0');
-            }, 10);
-            
+            setTimeout(() => toast.querySelector('div').classList.remove('translate-y-20', 'opacity-0'), 10);
             setTimeout(() => {
                 toast.querySelector('div').classList.add('translate-y-20', 'opacity-0');
                 setTimeout(() => toast.classList.add('hidden'), 300);
@@ -1961,9 +1521,7 @@
                 if (href !== '#') {
                     e.preventDefault();
                     const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
